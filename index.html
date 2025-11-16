@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Inicio</title>
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body class="app">
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">
+      ☰ Menu
+    </button>
+    <div class="topbar__title">Bienvenido</div>
+
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <!-- Backdrop oscuro cuando el menú está abierto -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Sidebar: menú lateral oculto hasta que se abre -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <!--<img src="logo.svg" alt="Se'si Eskani" class="brand__logo">-->
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+            <!-- Inicio -->
+            <a class="menu__item" href="index.html">
+            <span class="menu__icon">🏠</span>
+            <span>Inicio</span>
+        </a>
+      <a class="menu__item" href="#">
+        <span class="menu__icon">📄</span>
+        <span>AGO25ENE26</span>
+      </a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions">
+            <span class="menu__icon">📘</span>
+            <span>Instrucciones</span>
+       </a>
+
+            <!-- Aviso de privacidad -->
+        <a class="menu__item" href="aviso-privacidad.html">
+            <span class="menu__icon">🔒</span>
+            <span>Aviso de privacidad</span>
+        </a>
+    </div>
+
+    <!-- Sección ADMIN -->
+<div class="menu menu--admin">
+  <div class="menu__section-title">Administración</div>
+
+  <a class="menu__item" href="admin-usuarios.html">
+    <span class="menu__icon">👤</span>
+    <span>Crear usuarios</span>
+  </a>
+
+  <a class="menu__item" href="admin-docentes.html">
+    <span class="menu__icon">👨‍🏫</span>
+    <span>Crear maestros</span>
+  </a>
+
+  <a class="menu__item" href="admin-materias.html">
+    <span class="menu__icon">📚</span>
+    <span>Crear materias</span>
+  </a>
+
+  <a class="menu__item" href="admin-atributos.html">
+    <span class="menu__icon">🧬</span>
+    <span>Configurar atributos N</span>
+  </a>
+</div>
+
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="content">
+    <section class="card">
+      <div class="card__header">
+        <h2 class="card__title">Semestre Agosto 2025 - Enero 2026</h2>
+        <div class="badge">AGO25ENE26</div>
+      </div>
+
+      <div class="subjects">
+        <div class="subjects__toolbar">
+          <div class="filters">
+            <select class="field__input field__input--sm">
+              <option value="">Todos los semestres</option>
+              <option>1</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6</option>
+              <option>7</option><option>8</option><option>9</option>
+            </select>
+            <select class="field__input field__input--sm">
+              <option value="">Todos los niveles</option>
+              <option>Inicial</option>
+              <option>Medio</option>
+              <option>Avanzado</option>
+            </select>
+
+            <!-- NUEVO: buscador -->
+            <input
+                type="search"
+                id="searchSubject"
+                class="field__input field__input--sm field__input--search"
+                placeholder="Buscar materia o clave..."
+            />
+          </div>
+          
+
+          <div class="legend">
+            <span class="chip chip--I">I</span>
+            <span class="legend__text">Inicial</span>
+            <span class="chip chip--M">M</span>
+            <span class="legend__text">Medio</span>
+            <span class="chip chip--A">A</span>
+            <span class="legend__text">Avanzado</span>
+          </div>
+        </div>
+
+        <!-- NUEVO: resumen de acreditadas -->
+        <div class="subjects__summary">
+            Materias acreditadas
+            <strong><span id="completedCount">0</span>/<span id="totalCount">0</span></strong>
+        </div>
+
+
+        <div class="subject-grid">
+
+        <!-- 1 - ACREDITADA -->
+        <article class="subject-card subject-card--completed">
+            <span class="subject-card__check">✔</span>
+            <header class="subject-card__head">
+            <h3 class="subject-card__title">Cálculo Diferencial I</h3>
+            <span class="subject-card__code">NC–1031</span>
+        </header>
+            <div class="subject-card__meta">
+            <span class="chip chip--I">I</span>
+        </div>
+            <dl class="subject-card__info">
+            <div><dt>Sem</dt><dd>1</dd></div>
+            <div><dt>Créditos</dt><dd>6</dd></div>
+            <div><dt>Horas</dt><dd>4/2</dd></div>
+            </dl>
+            <button class="btn btn--primary subject-card__action">Ver detalles</button>
+        </article>
+
+    <!-- 2 - NO ACREDITADA -->
+  <article class="subject-card">
+    <header class="subject-card__head">
+      <h3 class="subject-card__title">Dibujo Industrial</h3>
+      <span class="subject-card__code">MC–1028</span>
+    </header>
+    <div class="subject-card__meta">
+      <span class="chip chip--I">I</span>
+    </div>
+    <dl class="subject-card__info">
+      <div><dt>Sem</dt><dd>1</dd></div>
+      <div><dt>Créditos</dt><dd>5</dd></div>
+      <div><dt>Horas</dt><dd>3/2</dd></div>
+    </dl>
+    <button class="btn btn--primary subject-card__action">Ver Detalles</button>
+  </article>
+
+  <!-- 3 - NO ACREDITADA -->
+  <article class="subject-card">
+    <header class="subject-card__head">
+      <h3 class="subject-card__title">Investigación de Operaciones I</h3>
+      <span class="subject-card__code">DOO–2003</span>
+    </header>
+    <div class="subject-card__meta">
+      <span class="chip chip--A">A</span>
+    </div>
+    <dl class="subject-card__info">
+      <div><dt>Sem</dt><dd>9</dd></div>
+      <div><dt>Créditos</dt><dd>7</dd></div>
+      <div><dt>Horas</dt><dd>4/3</dd></div>
+    </dl>
+    <button class="btn btn--primary subject-card__action">Ver detalles</button>
+  </article>
+
+  <!-- 4 - ACREDITADA -->
+  <article class="subject-card subject-card--completed">
+    <span class="subject-card__check">✔</span>
+    <header class="subject-card__head">
+      <h3 class="subject-card__title">Álgebra Lineal</h3>
+      <span class="subject-card__code">NC–1042</span>
+    </header>
+    <div class="subject-card__meta">
+      <span class="chip chip--M">M</span>
+    </div>
+    <dl class="subject-card__info">
+      <div><dt>Sem</dt><dd>2</dd></div>
+      <div><dt>Créditos</dt><dd>5</dd></div>
+      <div><dt>Horas</dt><dd>4/1</dd></div>
+    </dl>
+    <button class="btn btn--primary subject-card__action">Ver detalles</button>
+  </article>
+
+  <!-- 5 - ACREDITADA -->
+  <article class="subject-card subject-card--completed">
+    <span class="subject-card__check">✔</span>
+    <header class="subject-card__head">
+      <h3 class="subject-card__title">Fundamentos de Programación</h3>
+      <span class="subject-card__code">ISC–101</span>
+    </header>
+    <div class="subject-card__meta">
+      <span class="chip chip--I">I</span>
+    </div>
+    <dl class="subject-card__info">
+      <div><dt>Sem</dt><dd>1</dd></div>
+      <div><dt>Créditos</dt><dd>6</dd></div>
+      <div><dt>Horas</dt><dd>3/3</dd></div>
+    </dl>
+    <button class="btn btn--primary subject-card__action">Ver detalles</button>
+  </article>
+
+  <!-- 6 - NO ACREDITADA -->
+  <article class="subject-card">
+    <header class="subject-card__head">
+      <h3 class="subject-card__title">Estructuras de Datos</h3>
+      <span class="subject-card__code">ISC–201</span>
+    </header>
+    <div class="subject-card__meta">
+      <span class="chip chip--M">M</span>
+    </div>
+    <dl class="subject-card__info">
+      <div><dt>Sem</dt><dd>3</dd></div>
+      <div><dt>Créditos</dt><dd>7</dd></div>
+      <div><dt>Horas</dt><dd>4/3</dd></div>
+    </dl>
+    <button class="btn btn--primary subject-card__action">Ver detalles</button>
+  </article>
+
+  <!-- 7 - NO ACREDITADA -->
+  <article class="subject-card">
+    <header class="subject-card__head">
+      <h3 class="subject-card__title">Simulación</h3>
+      <span class="subject-card__code">AEE–1062</span>
+    </header>
+    <div class="subject-card__meta">
+      <span class="chip chip--A">A</span>
+    </div>
+    <dl class="subject-card__info">
+      <div><dt>Sem</dt><dd>8</dd></div>
+      <div><dt>Créditos</dt><dd>6</dd></div>
+      <div><dt>Horas</dt><dd>3/3</dd></div>
+    </dl>
+    <button class="btn btn--primary subject-card__action">Ver detalles</button>
+  </article>
+
+</div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de Instrucciones -->
+<div class="modal" id="instructionsModal" aria-hidden="true">
+  <div class="modal__backdrop"></div>
+
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+    <div class="modal__header">
+      <h2 class="modal__title" id="instructionsTitle">Instrucciones de la plataforma</h2>
+      <button class="modal__close" id="closeInstructions" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="modal__body">
+      <p><strong>Hola.</strong></p>
+
+      <p>Antes de empezar considera lo siguiente:</p>
+
+      <ul>
+        <li>Si no haz cambiado tu contraseña da clic en la opción con tu nombre del menú arriba. Es importante que allí cambies tu contraseña de acceso para que nadie más acceda a tu bandeja.</li>
+        <li>El formato de archivo de cada entrega son establecidas por cada docente. Por lo que pueden variar según sea el caso.</li>
+        <li>La fecha de apertura es el primer día desde el cual puedes entregar la evidencia solicitada.</li>
+        <li>El último día de entrega no es cuando se cierra la evidencia, sino efectivamente el día límite en el que se aceptan evidencias. Luego de ese día, el sistema no aceptará evidencias si el docente deshabilitó entregas tardías.</li>
+        <li>Las entregas tardías son habilitadas o deshabilitadas por cada docente de manera individual entre cada evidencia solicitada. No se muestra esta información al alumno para prever desfases mayores en las entregas, ya que permitir entregas tardías implica que el sistema reciba la evidencia aun después del último día de entrega.</li>
+        <li>Esta plataforma no pondera penalizaciones en ninguna entrega, sin embargo la información sobre tiempos de entrega es visualizada al docente, quien puede establecer bajo criterio una ponderación de puntos a desfases de entregas o correcciones solicitadas si así lo cree pertinente.</li>
+        <li>Si te haz equivocado al entregar alguna evidencia, podrás volverla a entregar la misma evidencia siempre que se cumpla la siguiente condición: exista aun tiempo para entregar, basándose en el último día de entrega y entregas tardías anteriormente expuestas.</li>
+        <li>Esta plataforma es accesible desde varios puntos dentro del tecnológico, los cuales incluyen los equipos del edificio A, B, D (Incubadora de empresas), E (Biblioteca) y F. Si estás conectado(a) físicamente desde cualquiera de estos lugares entonces puedes acceder a esta plataforma.</li>
+        <li>Para visualizar esta información nuevamente puedes dar clic en la opción de instrucciones, dentro del botón menú arriba.</li>
+        <li>No olvides cerrar sesión al terminar.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('backdrop');
+    const openBtn = document.getElementById('menuButton');
+    const closeBtn = document.getElementById('closeMenu');
+
+    const modal = document.getElementById('instructionsModal');
+    const modalBackdrop = modal ? modal.querySelector('.modal__backdrop') : null;
+    const modalClose = document.getElementById('closeInstructions');
+    const instructionsLink = document.getElementById('menuInstructions');
+
+    const openMenu = () => {
+      if (!sidebar || !backdrop) return;
+      sidebar.classList.add('sidebar--open');
+      backdrop.classList.add('backdrop--visible');
+      document.body.classList.add('no-scroll');
+    };
+
+    const closeMenu = () => {
+      if (!sidebar || !backdrop) return;
+      sidebar.classList.remove('sidebar--open');
+      backdrop.classList.remove('backdrop--visible');
+      document.body.classList.remove('no-scroll');
+    };
+
+    const openModal = () => {
+      if (!modal) return;
+      modal.classList.add('modal--open');
+      document.body.classList.add('no-scroll');
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.classList.remove('modal--open');
+      document.body.classList.remove('no-scroll');
+    };
+
+    // Menú
+    if (openBtn) openBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+    // Modal Instrucciones
+    if (instructionsLink && modal) {
+      instructionsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+        openModal();
+      });
+    }
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+
+    // ====== LÓGICA DE MATERIAS (solo en la vista de retícula) ======
+    const cards = document.querySelectorAll('.subject-card');
+    if (cards.length) {
+      const totalCountEl = document.getElementById('totalCount');
+      const completedCountEl = document.getElementById('completedCount');
+      const searchInput = document.getElementById('searchSubject');
+
+      // Contador n/m
+      if (totalCountEl && completedCountEl) {
+        const total = cards.length;
+        const completed = Array.from(cards).filter(c =>
+          c.classList.contains('subject-card--completed')
+        ).length;
+
+        totalCountEl.textContent = total;
+        completedCountEl.textContent = completed;
+      }
+
+      // Buscador
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const q = searchInput.value.trim().toLowerCase();
+
+          cards.forEach(card => {
+            const title = (card.querySelector('.subject-card__title')?.textContent || '').toLowerCase();
+            const code = (card.querySelector('.subject-card__code')?.textContent || '').toLowerCase();
+
+            const matches = !q || title.includes(q) || code.includes(q);
+            card.style.display = matches ? '' : 'none';
+          });
+        });
+      }
+    }
+  });
+</script>
+
+
+</body>
+
+</html>

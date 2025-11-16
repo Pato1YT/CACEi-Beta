@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Iniciar sesión</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="auth">
+  <div class="auth__panel">
+    <div class="auth__brand">
+      <img src="logo.svg" alt="Se'si Eskani" class="auth__logo">
+      <h1 class="auth__title">Se'si Eskani</h1>
+      <p class="auth__subtitle">Accede para continuar</p>
+    </div>
+
+    <form class="form" action="#" method="post" autocomplete="on">
+      <label class="field">
+        <span class="field__label">Correo institucional</span>
+        <input class="field__input" type="email" name="email" placeholder="tucorreo@ejemplo.edu" required>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Contraseña</span>
+        <input class="field__input" type="password" name="password" placeholder="••••••••" required>
+      </label>
+
+      <div class="form__extras">
+        <label class="check">
+          <input type="checkbox" />
+          <span>Mantener sesión iniciada</span>
+        </label>
+        <a class="link" href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button class="btn btn--primary" type="submit">Iniciar sesión</button>
+      <a class="btn btn--ghost" href="index.html">Entrar como invitado</a>
+    </form>
+
+    <footer class="auth__footer">
+      <a class="link" href="#">Aviso de privacidad</a> ·
+      <a class="link" href="#">Soporte</a>
+    </footer>
+  </div>
+
+  <div class="auth__bg"></div>
+</body>
+</html>
