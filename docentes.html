@@ -89,186 +89,98 @@
 
   </aside>
 
-  <!-- Contenido principal -->
   <main class="content">
-    <section class="card">
-      <div class="card__header">
-        <h2 class="card__title">Semestre Agosto 2025 - Enero 2026</h2>
-        <div class="badge">AGO25ENE26</div>
+  <section class="card">
+    <div class="card__header">
+      <h2 class="card__title">Docentes</h2>
+      <button class="btn btn--primary">Nuevo maestro</button>
+    </div>
+
+    <div class="docentes-layout">
+      <!-- LISTA -->
+      <div class="docentes-list">
+        <div class="docentes-toolbar">
+          <input type="search" class="field__input field__input--sm" placeholder="Buscar docente...">
+          <select class="field__input field__input--sm">
+            <option value="">Todos los estados</option>
+            <option value="1">Activos</option>
+            <option value="0">Inactivos</option>
+          </select>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Nombre completo</th>
+              <th>Email</th>
+              <th>Estado</th>
+              <th>Creado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>jmorach</td>
+              <td>Jesús Mora Chanocua</td>
+              <td>jesus.mora@itsh.edu.mx</td>
+              <td><span class="badge badge--success">Activo</span></td>
+              <td>2024-08-15</td>
+              <td><button class="btn btn--ghost btn--xs">Editar</button></td>
+            </tr>
+            <tr>
+              <td>mlopez</td>
+              <td>María López García</td>
+              <td>maria.lopez@itsh.edu.mx</td>
+              <td><span class="badge badge--muted">Inactivo</span></td>
+              <td>2023-02-10</td>
+              <td><button class="btn btn--ghost btn--xs">Editar</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div class="subjects">
-        <div class="subjects__toolbar">
-          <div class="filters">
-            <select class="field__input field__input--sm">
-              <option value="">Todos los semestres</option>
-              <option>1</option><option>2</option><option>3</option>
-              <option>4</option><option>5</option><option>6</option>
-              <option>7</option><option>8</option><option>9</option>
-            </select>
-            <select class="field__input field__input--sm">
-              <option value="">Todos los niveles</option>
-              <option>Inicial</option>
-              <option>Medio</option>
-              <option>Avanzado</option>
-            </select>
-
-            <!-- NUEVO: buscador -->
-            <input
-                type="search"
-                id="searchSubject"
-                class="field__input field__input--sm field__input--search"
-                placeholder="Buscar materia o clave..."
-            />
+      <!-- FORMULARIO -->
+      <div class="docentes-form">
+        <h3 class="docentes-form__title">Nuevo / editar maestro</h3>
+        <form class="form">
+          <div class="field">
+            <label class="field__label" for="NombreDocente">Usuario (NombreDocente)</label>
+            <input class="field__input" id="NombreDocente" type="text" placeholder="jmorach">
           </div>
-          
 
-          <div class="legend">
-            <span class="chip chip--I">I</span>
-            <span class="legend__text">Inicial</span>
-            <span class="chip chip--M">M</span>
-            <span class="legend__text">Medio</span>
-            <span class="chip chip--A">A</span>
-            <span class="legend__text">Avanzado</span>
+          <div class="field">
+            <label class="field__label" for="NombreCompleto">Nombre completo</label>
+            <input class="field__input" id="NombreCompleto" type="text" placeholder="Nombre(s) Apellidos">
           </div>
-        </div>
 
-        <!-- NUEVO: resumen de acreditadas -->
-        <div class="subjects__summary">
-            Materias acreditadas
-            <strong><span id="completedCount">0</span>/<span id="totalCount">0</span></strong>
-        </div>
+          <div class="field">
+            <label class="field__label" for="Email">Email</label>
+            <input class="field__input" id="Email" type="email" placeholder="correo@itsh.edu.mx">
+          </div>
 
+          <div class="field">
+            <label class="field__label" for="Contrasena">Contraseña</label>
+            <input class="field__input" id="Contrasena" type="password" placeholder="Contraseña temporal">
+          </div>
 
-        <div class="subject-grid">
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" id="EsActivo" checked>
+              <span>Docente activo</span>
+            </label>
+          </div>
 
-        <!-- 1 - ACREDITADA -->
-        <article class="subject-card subject-card--completed">
-            <span class="subject-card__check">✔</span>
-            <header class="subject-card__head">
-            <h3 class="subject-card__title">Cálculo Diferencial I</h3>
-            <span class="subject-card__code">NC–1031</span>
-        </header>
-            <div class="subject-card__meta">
-            <span class="chip chip--I">I</span>
-        </div>
-            <dl class="subject-card__info">
-            <div><dt>Sem</dt><dd>1</dd></div>
-            <div><dt>Créditos</dt><dd>6</dd></div>
-            <div><dt>Horas</dt><dd>4/2</dd></div>
-            </dl>
-            <button class="btn btn--primary subject-card__action">Ver detalles</button>
-        </article>
-
-    <!-- 2 - NO ACREDITADA -->
-  <article class="subject-card">
-    <header class="subject-card__head">
-      <h3 class="subject-card__title">Dibujo Industrial</h3>
-      <span class="subject-card__code">MC–1028</span>
-    </header>
-    <div class="subject-card__meta">
-      <span class="chip chip--I">I</span>
-    </div>
-    <dl class="subject-card__info">
-      <div><dt>Sem</dt><dd>1</dd></div>
-      <div><dt>Créditos</dt><dd>5</dd></div>
-      <div><dt>Horas</dt><dd>3/2</dd></div>
-    </dl>
-    <button class="btn btn--primary subject-card__action">Ver Detalles</button>
-  </article>
-
-  <!-- 3 - NO ACREDITADA -->
-  <article class="subject-card">
-    <header class="subject-card__head">
-      <h3 class="subject-card__title">Investigación de Operaciones I</h3>
-      <span class="subject-card__code">DOO–2003</span>
-    </header>
-    <div class="subject-card__meta">
-      <span class="chip chip--A">A</span>
-    </div>
-    <dl class="subject-card__info">
-      <div><dt>Sem</dt><dd>9</dd></div>
-      <div><dt>Créditos</dt><dd>7</dd></div>
-      <div><dt>Horas</dt><dd>4/3</dd></div>
-    </dl>
-    <button class="btn btn--primary subject-card__action">Ver detalles</button>
-  </article>
-
-  <!-- 4 - ACREDITADA -->
-  <article class="subject-card subject-card--completed">
-    <span class="subject-card__check">✔</span>
-    <header class="subject-card__head">
-      <h3 class="subject-card__title">Álgebra Lineal</h3>
-      <span class="subject-card__code">NC–1042</span>
-    </header>
-    <div class="subject-card__meta">
-      <span class="chip chip--M">M</span>
-    </div>
-    <dl class="subject-card__info">
-      <div><dt>Sem</dt><dd>2</dd></div>
-      <div><dt>Créditos</dt><dd>5</dd></div>
-      <div><dt>Horas</dt><dd>4/1</dd></div>
-    </dl>
-    <button class="btn btn--primary subject-card__action">Ver detalles</button>
-  </article>
-
-  <!-- 5 - ACREDITADA -->
-  <article class="subject-card subject-card--completed">
-    <span class="subject-card__check">✔</span>
-    <header class="subject-card__head">
-      <h3 class="subject-card__title">Fundamentos de Programación</h3>
-      <span class="subject-card__code">ISC–101</span>
-    </header>
-    <div class="subject-card__meta">
-      <span class="chip chip--I">I</span>
-    </div>
-    <dl class="subject-card__info">
-      <div><dt>Sem</dt><dd>1</dd></div>
-      <div><dt>Créditos</dt><dd>6</dd></div>
-      <div><dt>Horas</dt><dd>3/3</dd></div>
-    </dl>
-    <button class="btn btn--primary subject-card__action">Ver detalles</button>
-  </article>
-
-  <!-- 6 - NO ACREDITADA -->
-  <article class="subject-card">
-    <header class="subject-card__head">
-      <h3 class="subject-card__title">Estructuras de Datos</h3>
-      <span class="subject-card__code">ISC–201</span>
-    </header>
-    <div class="subject-card__meta">
-      <span class="chip chip--M">M</span>
-    </div>
-    <dl class="subject-card__info">
-      <div><dt>Sem</dt><dd>3</dd></div>
-      <div><dt>Créditos</dt><dd>7</dd></div>
-      <div><dt>Horas</dt><dd>4/3</dd></div>
-    </dl>
-    <button class="btn btn--primary subject-card__action">Ver detalles</button>
-  </article>
-
-  <!-- 7 - NO ACREDITADA -->
-  <article class="subject-card">
-    <header class="subject-card__head">
-      <h3 class="subject-card__title">Simulación</h3>
-      <span class="subject-card__code">AEE–1062</span>
-    </header>
-    <div class="subject-card__meta">
-      <span class="chip chip--A">A</span>
-    </div>
-    <dl class="subject-card__info">
-      <div><dt>Sem</dt><dd>8</dd></div>
-      <div><dt>Créditos</dt><dd>6</dd></div>
-      <div><dt>Horas</dt><dd>3/3</dd></div>
-    </dl>
-    <button class="btn btn--primary subject-card__action">Ver detalles</button>
-  </article>
-
-</div>
-
+          <div class="form__actions">
+            <button type="submit" class="btn btn--primary">Guardar</button>
+            <button type="button" class="btn btn--ghost">Cancelar</button>
+          </div>
+        </form>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+
 
   <!-- Modal de Instrucciones -->
 <div class="modal" id="instructionsModal" aria-hidden="true">
