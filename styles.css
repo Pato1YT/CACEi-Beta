@@ -595,10 +595,7 @@ body{
     grid-template-columns: 1fr;
   }
 }
-/* ============================================================
-   MEJORA DE ESTILOS PARA CREAR / EDITAR DOCENTE
-   Respeta el diseño original pero da más espacio y mejor lectura
-   ============================================================ */
+
 
 /* Aumentar ancho visual de la tarjeta */
 .card {
@@ -651,3 +648,29 @@ body{
     gap: 18px !important;
   }
 }
+
+
+/* Permitir desplazamiento vertical */
+.sidebar {
+  overflow-y: auto;
+  scrollbar-width: thin;       /* Firefox */
+  scrollbar-color: #999 transparent;
+}
+
+/* Scrollbar en Chrome / Edge */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+
+
+
+
+
+
