@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar docente — Se'si Eskani</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton">☰ Menu</button>
+    <div class="topbar__title">Editar maestro</div>
+  </header>
+
+  <main class="content">
+    <section class="card">
+      <h2 class="card__title">Editar información del docente</h2>
+
+      <form class="form">
+        <div class="field">
+          <label class="field__label" for="NombreDocente">Usuario</label>
+          <input class="field__input" id="NombreDocente" type="text" value="jmorach">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="NombreCompleto">Nombre completo</label>
+          <input class="field__input" id="NombreCompleto" type="text" value="Jesús Mora Chanocua">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="Email">Email</label>
+          <input class="field__input" id="Email" type="email" value="jesus.mora@itsh.edu.mx">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="Contrasena">Nueva contraseña</label>
+          <input class="field__input" id="Contrasena" type="password" placeholder="(Opcional)">
+        </div>
+
+        <div class="field">
+          <label class="check">
+            <input type="checkbox" id="EsActivo" checked>
+            <span>Docente activo</span>
+          </label>
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">Actualizar</button>
+          <a href="docentes.html" class="btn btn--ghost">Cancelar</a>
+        </div>
+      </form>
+
+    </section>
+  </main>
+
+</body>
+</html>

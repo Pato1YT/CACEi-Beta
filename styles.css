@@ -595,3 +595,59 @@ body{
     grid-template-columns: 1fr;
   }
 }
+/* ============================================================
+   MEJORA DE ESTILOS PARA CREAR / EDITAR DOCENTE
+   Respeta el diseño original pero da más espacio y mejor lectura
+   ============================================================ */
+
+/* Aumentar ancho visual de la tarjeta */
+.card {
+  padding: 26px 34px !important;    /* más margen interno */
+}
+
+/* Título más separado */
+.card__title {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+/* Sección del formulario */
+.form {
+  gap: 22px !important;              /* más espacio entre campos */
+  margin-top: 16px;
+}
+
+/* Cada campo */
+.field {
+  gap: 10px;
+}
+
+/* Input más grandes y cómodos */
+.field__input {
+  padding: 14px 14px !important;
+  font-size: 16px;
+}
+
+/* Checkbox separado */
+.check {
+  margin-top: 6px;
+  padding: 10px 4px;
+}
+
+/* Botones más separados */
+.form__actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+/* Mejor responsividad */
+@media (max-width: 600px) {
+  .card {
+    padding: 20px 18px !important;
+  }
+
+  .form {
+    gap: 18px !important;
+  }
+}
