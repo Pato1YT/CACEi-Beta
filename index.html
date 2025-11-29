@@ -8,11 +8,10 @@
 
 </head>
 <body class="app">
+ <!--_____________________________________________________________________________________________________________--->
   <!-- Topbar -->
   <header class="topbar">
-    <button class="burger" id="menuButton" aria-label="Abrir menú">
-      ☰ Menu
-    </button>
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
     <div class="topbar__title">Bienvenido</div>
 
     <div class="topbar__actions">
@@ -22,14 +21,11 @@
     </div>
   </header>
 
-  <!-- Backdrop oscuro cuando el menú está abierto -->
   <div class="backdrop" id="backdrop"></div>
 
-  <!-- Sidebar: menú lateral oculto hasta que se abre -->
   <aside id="sidebar" class="sidebar">
     <div class="sidebar__header">
       <div class="brand">
-        <!--<img src="logo.svg" alt="Se'si Eskani" class="brand__logo">-->
         <div class="brand__name">Se'si Eskani</div>
       </div>
       <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
@@ -37,56 +33,38 @@
 
     <nav class="menu">
       <div class="menu__section-title">Menú principal</div>
-            <!-- Inicio -->
-            <a class="menu__item" href="index.html">
-            <span class="menu__icon"></span>
-            <span>Inicio</span>
-        </a>
-      <a class="menu__item" href="#">
-        <span class="menu__icon"></span>
-        <span>AGO25ENE26</span>
-      </a>
+      <a class="menu__item" href="index.html"><span class="menu__icon"></span><span>Inicio</span></a>
+      <a class="menu__item" href="#"><span class="menu__icon"></span><span>AGO25ENE26</span></a>
     </nav>
 
     <div class="menu menu--secondary">
       <div class="menu__section-title">Otros</div>
-      <a class="menu__item" href="#" id="menuInstructions">
-            <span class="menu__icon"></span>
-            <span>Instrucciones</span>
-       </a>
-
-            <!-- Aviso de privacidad -->
-        <a class="menu__item" href="aviso-privacidad.html">
-            <span class="menu__icon"></span>
-            <span>Aviso de privacidad</span>
-        </a>
+      <a class="menu__item" href="#" id="menuInstructions"><span class="menu__icon"></span><span>Instrucciones</span></a>
+      <a class="menu__item" href="aviso-privacidad.html"><span class="menu__icon"></span><span>Aviso de privacidad</span></a>
     </div>
 
-    <!-- Sección ADMIN -->
-<div class="menu menu--admin">
-  <div class="menu__section-title">Administración</div>
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
 
-  <a class="menu__item" href="admin-usuarios.html">
-    <span class="menu__icon"></span>
-    <span>Usuarios</span>
-  </a>
+      <a class="menu__item" href="usuarios.html">
+        <span class="menu__icon"></span><span>Usuarios</span>
+      </a>
 
-  <a class="menu__item" href="docentes.html">
-    <span class="menu__icon"></span>
-    <span>Maestros</span>
-  </a>
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon"></span><span>Maestros</span>
+      </a>
 
-  <a class="menu__item" href="admin-materias.html">
-    <span class="menu__icon"></span>
-    <span>Materias</span>
-  </a>
+      <a class="menu__item" href="admin-materias.html">
+        <span class="menu__icon"></span><span>Materias</span>
+      </a>
 
-  <a class="menu__item" href="admin-atributos.html">
-    <span class="menu__icon"></span>
-    <span>Configurar atributos</span>
-  </a>
-</div>
+      <a class="menu__item" href="atributos.html">
+        <span class="menu__icon"></span><span>Configurar atributos N</span>
+      </a>
+    </div>
 
+
+<!--_____________________________________________________________________________________________________________--->
   </aside>
 
   <!-- Contenido principal -->

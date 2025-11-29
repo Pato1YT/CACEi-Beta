@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Atributos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="app">
+
+<!-- ___________________________________________________________ -->
+<!-- Topbar -->
+<header class="topbar">
+  <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+  <div class="topbar__title">Atributos de Egreso</div>
+
+  <div class="topbar__actions">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+
+<!-- ___________________________________________________________ -->
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar__header">
+    <div class="brand">
+      <div class="brand__name">Se'si Eskani</div>
+    </div>
+    <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+  </div>
+
+  <nav class="menu">
+    <div class="menu__section-title">Menú principal</div>
+    <a class="menu__item" href="index.html"><span class="menu__icon"></span><span>Inicio</span></a>
+    <a class="menu__item" href="#"><span class="menu__icon"></span><span>AGO25ENE26</span></a>
+  </nav>
+
+  <div class="menu menu--secondary">
+    <div class="menu__section-title">Otros</div>
+    <a class="menu__item" href="#" id="menuInstructions"><span class="menu__icon"></span><span>Instrucciones</span></a>
+    <a class="menu__item" href="aviso-privacidad.html"><span class="menu__icon"></span><span>Aviso de privacidad</span></a>
+  </div>
+
+  <div class="menu menu--admin">
+    <div class="menu__section-title">Administración</div>
+
+    <a class="menu__item" href="usuarios.html">
+      <span class="menu__icon"></span><span>Usuarios</span>
+    </a>
+
+    <a class="menu__item" href="docentes.html">
+      <span class="menu__icon"></span><span>Maestros</span>
+    </a>
+
+    <a class="menu__item" href="admin-materias.html">
+      <span class="menu__icon"></span><span>Materias</span>
+    </a>
+
+    <a class="menu__item" href="atributos.html">
+      <span class="menu__icon"></span><span>Atributos</span>
+    </a>
+  </div>
+</aside>
+
+<!-- ___________________________________________________________ -->
+<main class="content">
+  <section class="card">
+    <div class="card__header">
+      <h2 class="card__title">Atributos de Egreso</h2>
+      <a href="#" class="btn btn--primary">Agregar atributo</a>
+    </div>
+
+    <div class="docentes-layout">
+
+      <!-- LISTA -->
+      <div class="docentes-list">
+
+        <div class="docentes-toolbar">
+          <input type="search" id="searchAtributo" class="field__input field__input--sm" placeholder="Buscar atributo...">
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Atributo</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody id="atributosTable">
+
+            <tr>
+              <td>A1</td>
+              <td>Diseña, mejora e integra sistemas productivos de bienes y servicios aplicando tecnologías para su optimización.</td>
+              <td><a href="#" class="btn btn--ghost btn--xs">Editar</a></td>
+            </tr>
+
+            <tr>
+              <td>A2</td>
+              <td>Diseña, implementa y mejora sistemas de trabajo para elevar la productividad.</td>
+              <td><a href="#" class="btn btn--ghost btn--xs">Editar</a></td>
+            </tr>
+
+            <tr>
+              <td>A3</td>
+              <td>Implanta sistemas de calidad utilizando métodos estadísticos para mejorar la competitividad de las organizaciones.</td>
+              <td><a href="#" class="btn btn--ghost btn--xs">Editar</a></td>
+            </tr>
+
+            <tr>
+              <td>A4</td>
+              <td>Administra sistemas de mantenimiento en procesos de bienes y servicios para la optimización en el uso de los recursos.</td>
+              <td><a href="#" class="btn btn--ghost btn--xs">Editar</a></td>
+            </tr>
+
+            <tr>
+              <td>A5</td>
+              <td>Gestiona sistemas de seguridad, salud ocupacional de manera sustentable, en sistemas productivos de bienes y servicios atendiendo los lineamientos legales.</td>
+              <td><a href="#" class="btn btn--ghost btn--xs">Editar</a></td>
+            </tr>
+
+            <tr>
+              <td>A6</td>
+              <td>Formula, evalúa y gestiona proyectos de inversión, sociales y de tra
