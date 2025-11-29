@@ -18,29 +18,18 @@
     }
 
     /* Logos laterales */
-   /* Logo TECNM (izquierdo) más grande */
-.logo-left {
-  position: fixed;
-  top: 40px;
-  left: 40px;
-  width: 350px;   /* <-- AQUI aumentas el tamaño */
-}
-
-/* Logo Tec Huetamo (derecho) normal */
-.logo-right {
-  position: fixed;
-  top: 40px;
-  right: 40px;
-  width: 180px;
-}
-
-
     .logo-left {
+      position: fixed;
+      top: 40px;
       left: 40px;
+      width: 350px;
     }
 
     .logo-right {
+      position: fixed;
+      top: 40px;
       right: 40px;
+      width: 180px;
     }
 
     /* Panel principal */
@@ -136,21 +125,37 @@
     </div>
 
     <!-- FORMULARIO -->
-    <form>
+    <form id="loginForm">
       <div class="form-group">
         <label>Usuario</label>
-        <input type="text" placeholder="********">
+        <input id="user" type="text" placeholder="********">
       </div>
 
       <div class="form-group">
         <label>Contraseña</label>
-        <input type="password" placeholder="********">
+        <input id="pass" type="password" placeholder="********">
       </div>
 
       <button class="btn-primary" type="submit">Aceptar</button>
     </form>
 
   </div>
+
+  <!-- SCRIPT DE VALIDACION -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Evita recargar la página
+
+      const usuario = document.getElementById("user").value.trim();
+      const password = document.getElementById("pass").value.trim();
+
+      if (usuario === "huetamo" && password === "itsh123") {
+        window.location.href = "index.html"; // Redirección
+      } else {
+        alert("Usuario o contraseña incorrectos.");
+      }
+    });
+  </script>
 
 </body>
 </html>
