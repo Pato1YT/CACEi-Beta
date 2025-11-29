@@ -4,45 +4,153 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Se'si Eskani — Iniciar sesión</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #073b59;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Logos laterales */
+   /* Logo TECNM (izquierdo) más grande */
+.logo-left {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 350px;   /* <-- AQUI aumentas el tamaño */
+}
+
+/* Logo Tec Huetamo (derecho) normal */
+.logo-right {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  width: 180px;
+}
+
+
+    .logo-left {
+      left: 40px;
+    }
+
+    .logo-right {
+      right: 40px;
+    }
+
+    /* Panel principal */
+    .login-panel {
+      background: #f4f4f4;
+      width: 60%;
+      max-width: 850px;
+      padding: 50px 70px;
+      border-radius: 25px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .login-header img {
+      width: 85px;
+      margin-bottom: 10px;
+    }
+
+    .login-title {
+      font-size: 32px;
+      margin: 0;
+      color: #073b59;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin: 25px auto;
+      text-align: center;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 65%;
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #073b59;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    /* Botón */
+    .btn-primary {
+      background: #073b59;
+      color: #fff;
+      border: none;
+      padding: 12px 40px;
+      border-radius: 25px;
+      font-size: 20px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .btn-primary:hover {
+      background: #052e44;
+    }
+
+    /* Ajustes responsive */
+    @media (max-width: 900px) {
+      .login-panel {
+        width: 90%;
+        padding: 40px 20px;
+      }
+
+      .form-group input {
+        width: 90%;
+      }
+
+      .logo-left, .logo-right {
+        width: 120px;
+        top: 20px;
+      }
+    }
+  </style>
 </head>
-<body class="auth">
-  <div class="auth__panel">
-    <div class="auth__brand">
-      <img src="logo.svg" alt="Se'si Eskani" class="auth__logo">
-      <h1 class="auth__title">Se'si Eskani</h1>
-      <p class="auth__subtitle">Accede para continuar</p>
+
+<body>
+
+  <!-- LOGOS LATERALES -->
+  <img src="image/Tecnm.png" class="logo-left" alt="TecNM">
+  <img src="image/TecHuetamo.png" class="logo-right" alt="ITS Huetamo">
+
+  <!-- PANEL PRINCIPAL -->
+  <div class="login-panel">
+
+    <div class="login-header">
+      <img src="image/Logo.png" alt="Logo sistema">
+      <h1 class="login-title">Se'si Eskani</h1>
     </div>
 
-    <form class="form" action="#" method="post" autocomplete="on">
-      <label class="field">
-        <span class="field__label">Correo institucional</span>
-        <input class="field__input" type="email" name="email" placeholder="tucorreo@ejemplo.edu" required>
-      </label>
-
-      <label class="field">
-        <span class="field__label">Contraseña</span>
-        <input class="field__input" type="password" name="password" placeholder="••••••••" required>
-      </label>
-
-      <div class="form__extras">
-        <label class="check">
-          <input type="checkbox" />
-          <span>Mantener sesión iniciada</span>
-        </label>
-        <a class="link" href="#">¿Olvidaste tu contraseña?</a>
+    <!-- FORMULARIO -->
+    <form>
+      <div class="form-group">
+        <label>Usuario</label>
+        <input type="text" placeholder="********">
       </div>
 
-      <button class="btn btn--primary" type="submit">Iniciar sesión</button>
-      <a class="btn btn--ghost" href="index.html">Entrar como invitado</a>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" placeholder="********">
+      </div>
+
+      <button class="btn-primary" type="submit">Aceptar</button>
     </form>
 
-    <footer class="auth__footer">
-      <a class="link" href="#">Aviso de privacidad</a> ·
-      <a class="link" href="#">Soporte</a>
-    </footer>
   </div>
 
-  <div class="auth__bg"></div>
 </body>
 </html>
