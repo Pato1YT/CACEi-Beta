@@ -671,6 +671,116 @@ body{
 
 
 /*Estilos para el login*/
+/* ================== MATERIAS – LISTA ================== */
+
+/* Contenedor principal de la tarjeta de materias (la .card que ya usas) */
+.card--materias {
+  padding: 26px 34px;
+}
+
+/* Header: título + descripción + botón Nueva materia */
+.card--materias .card__header {
+  padding: 0 0 18px 0;
+  border-bottom: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card--materias .card__header-text {
+  flex: 1;
+}
+
+.card--materias .card__title {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.card--materias .card__subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.card--materias .card__header .btn {
+  margin-bottom: 4px;        /* baja un poquito el botón para que “empate” visual */
+}
+
+/* Fila de filtros: buscador + selects */
+.list-filters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 0 12px;
+}
+
+.list-filters__left {
+  flex: 1;
+  max-width: 420px;
+}
+
+.list-filters__left .field__input--search {
+  width: 100%;
+}
+
+.list-filters__right {
+  display: flex;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.list-filters__right .field__input {
+  min-width: 190px;
+}
+
+/* Tabla: alineamos la columna de acciones a la derecha */
+.table td:last-child,
+.table th:last-child {
+  text-align: right;
+}
+
+.table td:last-child .btn--xs {
+  min-width: 70px;
+}
+
+/* Responsive – en pantallas medianas/pequeñas los filtros se apilan */
+@media (max-width: 980px) {
+  .card--materias {
+    padding: 22px 18px;
+  }
+
+  .card--materias .card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card--materias .card__header .btn {
+    align-self: stretch;
+    width: 100%;              /* botón full width en móvil */
+    text-align: center;
+    justify-content: center;
+  }
+
+  .list-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .list-filters__left,
+  .list-filters__right {
+    width: 100%;
+  }
+
+  .list-filters__right {
+    justify-content: flex-start;
+  }
+
+  .list-filters__right .field__input {
+    flex: 1;
+  }
+}
 
 
 
