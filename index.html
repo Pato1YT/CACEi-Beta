@@ -370,6 +370,36 @@
   });
 </script>
 
+ <script>
+    // Mostrar / ocultar contraseña
+    const pass = document.getElementById("pass");
+    const toggle = document.getElementById("togglePass");
+
+    toggle.addEventListener("click", () => {
+      if (pass.type === "password") {
+        pass.type = "text";
+        toggle.classList.replace("fa-eye", "fa-eye-slash");
+      } else {
+        pass.type = "password";
+        toggle.classList.replace("fa-eye-slash", "fa-eye");
+      }
+    });
+
+    // Validación
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault(); 
+
+      const usuario = document.getElementById("user").value.trim();
+      const password = document.getElementById("pass").value.trim();
+
+      if (usuario === "huetamo" && password === "itsh123") {
+        window.location.href = "index.html";
+      } else {
+        alert("Usuario o contraseña incorrectos.");
+      }
+    });
+  </script>
+
 
 </body>
 
