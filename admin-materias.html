@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Materias</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app">
+  <!-- Topbar -->
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+    <div class="topbar__title">Materias</div>
+
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <!-- Backdrop para el offcanvas -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html">
+        <span class="menu__icon"></span><span>Inicio</span>
+      </a>
+      <a class="menu__item" href="#">
+        <span class="menu__icon"></span><span>AGO25ENE26</span>
+      </a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions">
+        <span class="menu__icon"></span><span>Instrucciones</span>
+      </a>
+      <a class="menu__item" href="aviso-privacidad.html">
+        <span class="menu__icon"></span><span>Aviso de privacidad</span>
+      </a>
+    </div>
+
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
+      <a class="menu__item" href="usuarios.html">
+        <span class="menu__icon"></span><span>Usuarios</span>
+      </a>
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon"></span><span>Maestros</span>
+      </a>
+      <a class="menu__item menu__item--active" href="admin-materias.html">
+        <span class="menu__icon"></span><span>Materias</span>
+      </a>
+      <a class="menu__item" href="atributos.html">
+        <span class="menu__icon"></span><span>Configurar atributos N</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Backdrop & sidebar (mismo markup que en tus otras páginas) -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <img src="logo.svg" alt="Se'si Eskani" class="brand__logo">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html">
+        <span class="menu__icon">🏠</span><span>Inicio</span>
+      </a>
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon">👨‍🏫</span><span>Docentes</span>
+      </a>
+      <a class="menu__item menu__item--active" href="materias.html">
+        <span class="menu__icon">📚</span><span>Materias</span>
+      </a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions">
+        <span class="menu__icon">📘</span><span>Instrucciones</span>
+      </a>
+      <a class="menu__item" href="aviso-privacidad.html">
+        <span class="menu__icon">🔒</span><span>Aviso de privacidad</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Contenido -->
+  <main class="content">
+    <section class="card list-card">
+      <header class="list-card__header">
+        <div>
+          <h1 class="list-card__title">Materias</h1>
+          <p class="list-card__subtitle">Gestiona las materias asignadas a los docentes y atributos de egreso.</p>
+        </div>
+        <a href="crear-materia.html" class="btn btn--primary list-card__cta">
+          Nueva materia
+        </a>
+      </header>
+
+      <!-- Filtros -->
+      <div class="list-filters">
+        <div class="list-filters__left">
+          <input type="search" class="field__input field__input--sm"
+                 placeholder="Buscar por clave, atributo o docente..." />
+        </div>
+        <div class="list-filters__right">
+          <select class="field__input field__input--sm">
+            <option value="">Todos los niveles</option>
+            <option value="I">Inicial</option>
+            <option value="M">Medio</option>
+            <option value="A">Avanzado</option>
+          </select>
+          <select class="field__input field__input--sm">
+            <option value="">Todos los periodos</option>
+            <option>AGO25–ENE26</option>
+            <option>ENE26–JUN26</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tabla de materias -->
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Clave</th>
+              <th>Atributo egreso</th>
+              <th>Docente</th>
+              <th>Nivel</th>
+              <th>Grupo</th>
+              <th>Especialidad</th>
+              <th>Periodo</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Fila 1 -->
+            <tr>
+              <td>ISC-101</td>
+              <td>AE1 — Comunicación efectiva</td>
+              <td>Jesús Mora Chanocua</td>
+              <td>
+                <span class="badge badge--nivel badge--nivel-I">I</span>
+              </td>
+              <td>A</td>
+              <td>
+                <span class="badge badge--pill badge--yes">Sí</span>
+              </td>
+              <td>AGO25–ENE26</td>
+              <td class="table__actions">
+                <button class="btn btn--ghost btn--xs">Editar</button>
+              </td>
+            </tr>
+
+            <!-- Fila 2 -->
+            <tr>
+              <td>ISC-201</td>
+              <td>AE3 — Pensamiento crítico</td>
+              <td>María López García</td>
+              <td>
+                <span class="badge badge--nivel badge--nivel-M">M</span>
+              </td>
+              <td>B</td>
+              <td>
+                <span class="badge badge--pill badge--no">No</span>
+              </td>
+              <td>AGO25–ENE26</td>
+              <td class="table__actions">
+                <button class="btn btn--ghost btn--xs">Editar</button>
+              </td>
+            </tr>
+
+            <!-- Fila 3 -->
+            <tr>
+              <td>DOO-2003</td>
+              <td>AE6 — Gestión de proyectos</td>
+              <td>Jesús Mora Chanocua</td>
+              <td>
+                <span class="badge badge--nivel badge--nivel-A">A</span>
+              </td>
+              <td>C</td>
+              <td>
+                <span class="badge badge--pill badge--yes">Sí</span>
+              </td>
+              <td>ENE26–JUN26</td>
+              <td class="table__actions">
+                <button class="btn btn--ghost btn--xs">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de Instrucciones (el mismo que ya usas) -->
+  <div class="modal" id="instructionsModal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+      <div class="modal__header">
+        <h2 class="modal__title" id="instructionsTitle">Instrucciones de la plataforma</h2>
+        <button class="modal__close" id="closeInstructions" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal__body">
+        <!-- tu texto de instrucciones -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar       = document.getElementById('sidebar');
+      const backdrop      = document.getElementById('backdrop');
+      const openBtn       = document.getElementById('menuButton');
+      const closeBtn      = document.getElementById('closeMenu');
+
+      const modal         = document.getElementById('instructionsModal');
+      const modalBackdrop = modal.querySelector('.modal__backdrop');
+      const modalClose    = document.getElementById('closeInstructions');
+      const instructionsLink = document.getElementById('menuInstructions');
+
+      const openMenu = () => {
+        sidebar.classList.add('sidebar--open');
+        backdrop.classList.add('backdrop--visible');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeMenu = () => {
+        sidebar.classList.remove('sidebar--open');
+        backdrop.classList.remove('backdrop--visible');
+        document.body.classList.remove('no-scroll');
+      };
+
+      const openModal = () => {
+        modal.classList.add('modal--open');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('modal--open');
+        document.body.classList.remove('no-scroll');
+      };
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      backdrop.addEventListener('click', closeMenu);
+
+      instructionsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+        openModal();
+      });
+
+      modalBackdrop.addEventListener('click', closeModal);
+      modalClose.addEventListener('click', closeModal);
+    });
+  </script>
+</body>
+</html>

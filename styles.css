@@ -595,3 +595,192 @@ body{
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Aumentar ancho visual de la tarjeta */
+.card {
+  padding: 26px 34px !important;    /* más margen interno */
+}
+
+/* Título más separado */
+.card__title {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+/* Sección del formulario */
+.form {
+  gap: 22px !important;              /* más espacio entre campos */
+  margin-top: 16px;
+}
+
+/* Cada campo */
+.field {
+  gap: 10px;
+}
+
+/* Input más grandes y cómodos */
+.field__input {
+  padding: 14px 14px !important;
+  font-size: 16px;
+}
+
+/* Checkbox separado */
+.check {
+  margin-top: 6px;
+  padding: 10px 4px;
+}
+
+/* Botones más separados */
+.form__actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+/* Mejor responsividad */
+@media (max-width: 600px) {
+  .card {
+    padding: 20px 18px !important;
+  }
+
+  .form {
+    gap: 18px !important;
+  }
+}
+
+
+/* Permitir desplazamiento vertical */
+.sidebar {
+  overflow-y: auto;
+  scrollbar-width: thin;       /* Firefox */
+  scrollbar-color: #999 transparent;
+}
+
+/* Scrollbar en Chrome / Edge */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+
+
+/*Estilos para el login*/
+/* ================== MATERIAS – LISTA ================== */
+
+/* Contenedor principal de la tarjeta de materias (la .card que ya usas) */
+.card--materias {
+  padding: 26px 34px;
+}
+
+/* Header: título + descripción + botón Nueva materia */
+.card--materias .card__header {
+  padding: 0 0 18px 0;
+  border-bottom: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card--materias .card__header-text {
+  flex: 1;
+}
+
+.card--materias .card__title {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.card--materias .card__subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.card--materias .card__header .btn {
+  margin-bottom: 4px;        /* baja un poquito el botón para que “empate” visual */
+}
+
+/* Fila de filtros: buscador + selects */
+.list-filters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 0 12px;
+}
+
+.list-filters__left {
+  flex: 1;
+  max-width: 420px;
+}
+
+.list-filters__left .field__input--search {
+  width: 100%;
+}
+
+.list-filters__right {
+  display: flex;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.list-filters__right .field__input {
+  min-width: 190px;
+}
+
+/* Tabla: alineamos la columna de acciones a la derecha */
+.table td:last-child,
+.table th:last-child {
+  text-align: right;
+}
+
+.table td:last-child .btn--xs {
+  min-width: 70px;
+}
+
+/* Responsive – en pantallas medianas/pequeñas los filtros se apilan */
+@media (max-width: 980px) {
+  .card--materias {
+    padding: 22px 18px;
+  }
+
+  .card--materias .card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card--materias .card__header .btn {
+    align-self: stretch;
+    width: 100%;              /* botón full width en móvil */
+    text-align: center;
+    justify-content: center;
+  }
+
+  .list-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .list-filters__left,
+  .list-filters__right {
+    width: 100%;
+  }
+
+  .list-filters__right {
+    justify-content: flex-start;
+  }
+
+  .list-filters__right .field__input {
+    flex: 1;
+  }
+}
+
+
+

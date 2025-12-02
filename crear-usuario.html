@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crear docente — Se'si Eskani</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton">☰ Menu</button>
+    <div class="topbar__title">Crear usuario</div>
+  </header>
+
+  <main class="content">
+    <section class="card">
+      <h2 class="card__title">Registrar nuevo docente</h2>
+
+      <form class="form">
+        <div class="field">
+          <label class="field__label" for="NombreDocente">Nombre para el usuario</label>
+          <input class="field__input" id="NombreDocente" type="text" placeholder="jmorach">
+        </div>
+
+    
+
+        <div class="field">
+          <label class="field__label" for="Email">Email</label>
+          <input class="field__input" id="Email" type="email" placeholder="correo@itsh.edu.mx">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="Contrasena">Contraseña</label>
+          <input class="field__input" id="Contrasena" type="password" placeholder="Contraseña temporal">
+        </div>
+
+        <div class="field">
+          <label class="check">
+            <input type="checkbox" id="EsActivo" checked>
+            <span>Usuario activo</span>
+          </label>
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">Guardar</button>
+          <a href="usuarios.html" class="btn btn--ghost">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

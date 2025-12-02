@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Se'si Eskani — Docentes</title>
+  <title>Se'si Eskani — Usuarios</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="app">
@@ -11,7 +11,7 @@
   <!-- Topbar -->
   <header class="topbar">
     <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
-    <div class="topbar__title">Docentes</div>
+    <div class="topbar__title">Usuarios</div>
 
     <div class="topbar__actions">
       <span class="dot"></span>
@@ -45,7 +45,7 @@
     <div class="menu menu--admin">
       <div class="menu__section-title">Administración</div>
 
-      <a class="menu__item" href="admin-usuarios.html">
+      <a class="menu__item" href="usuarios.html">
         <span class="menu__icon"></span><span>Usuarios</span>
       </a>
 
@@ -67,8 +67,8 @@
   <main class="content">
     <section class="card">
       <div class="card__header">
-        <h2 class="card__title">Docentes</h2>
-        <a href="crear-docente.html" class="btn btn--primary">Nuevo maestro</a>
+        <h2 class="card__title">Usuarios</h2>
+        <a href="crear-usuario.html" class="btn btn--primary">Nuevo usuario</a>
       </div>
 
       <div class="docentes-layout">
@@ -77,7 +77,7 @@
         <div class="docentes-list">
 
           <div class="docentes-toolbar">
-            <input type="search" class="field__input field__input--sm" placeholder="Buscar docente...">
+            <input type="search" class="field__input field__input--sm" placeholder="Buscar usuario...">
             <select class="field__input field__input--sm">
               <option value="">Todos los estados</option>
               <option value="1">Activos</option>
@@ -89,8 +89,7 @@
             <thead>
               <tr>
                 <th>Usuario</th>
-                <th>Nombre completo</th>
-                <th>Email</th>
+              <th>Correo</th>
                 <th>Estado</th>
                 <th>Creado</th>
                 <th></th>
@@ -100,20 +99,20 @@
             <tbody>
               <tr>
                 <td>jmorach</td>
-                <td>Jesús Mora Chanocua</td>
                 <td>jesus.mora@itsh.edu.mx</td>
                 <td><span class="badge badge--success">Activo</span></td>
                 <td>2024-08-15</td>
-                <td><a href="editar-docente.html" class="btn btn--ghost btn--xs">Editar</a></td>
+                <td><a href="editar-usuario.html" class="btn btn--ghost btn--xs">Editar</a></td>
+                <td><a href="eliminar-usuario.html" class="btn btn--ghost btn--xs">Elimiar</a></td>
               </tr>
 
               <tr>
                 <td>mlopez</td>
-                <td>María López García</td>
                 <td>maria.lopez@itsh.edu.mx</td>
                 <td><span class="badge badge--muted">Inactivo</span></td>
                 <td>2023-02-10</td>
-                <td><a href="editar-docente.html" class="btn btn--ghost btn--xs">Editar</a></td>
+                <td><a href="editar-usuario.html" class="btn btn--ghost btn--xs">Editar</a></td>
+                <td><a href="eliminar-usuario.html" class="btn btn--ghost btn--xs">Elimiar</a></td>
               </tr>
 
             </tbody>

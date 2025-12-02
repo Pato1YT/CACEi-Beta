@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Crear materia</title>
+  <link rel="stylesheet" href="styles-materia.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app">
+
+  <!-- Topbar -->
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+    <div class="topbar__title">Materias</div>
+
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <!-- Backdrop para el offcanvas -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html">
+        <span class="menu__icon"></span><span>Inicio</span>
+      </a>
+      <a class="menu__item" href="#">
+        <span class="menu__icon"></span><span>AGO25ENE26</span>
+      </a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions">
+        <span class="menu__icon"></span><span>Instrucciones</span>
+      </a>
+      <a class="menu__item" href="aviso-privacidad.html">
+        <span class="menu__icon"></span><span>Aviso de privacidad</span>
+      </a>
+    </div>
+
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
+      <a class="menu__item" href="usuarios.html">
+        <span class="menu__icon"></span><span>Usuarios</span>
+      </a>
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon"></span><span>Maestros</span>
+      </a>
+      <a class="menu__item menu__item--active" href="admin-materias.html">
+        <span class="menu__icon"></span><span>Materias</span>
+      </a>
+      <a class="menu__item" href="atributos.html">
+        <span class="menu__icon"></span><span>Configurar atributos N</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Backdrop & sidebar (mismo markup que en tus otras páginas) -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <img src="logo.svg" alt="Se'si Eskani" class="brand__logo">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html">
+        <span class="menu__icon">🏠</span><span>Inicio</span>
+      </a>
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon">👨‍🏫</span><span>Docentes</span>
+      </a>
+      <a class="menu__item menu__item--active" href="materias.html">
+        <span class="menu__icon">📚</span><span>Materias</span>
+      </a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions">
+        <span class="menu__icon">📘</span><span>Instrucciones</span>
+      </a>
+      <a class="menu__item" href="aviso-privacidad.html">
+        <span class="menu__icon">🔒</span><span>Aviso de privacidad</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- (Si ya tienes sidebar / menú lateral, aquí lo puedes incluir igual que en las otras páginas) -->
+
+  <main class="content">
+    <section class="card card--wide">
+      <header class="page-header">
+        <h1 class="page-header__title">Registrar nueva materia</h1>
+        <p class="page-header__subtitle">
+          Completa la información para dar de alta una materia en el plan de estudios.
+        </p>
+      </header>
+
+      <form class="form form--materia">
+        <!-- Fila 1: Atributo de egreso & Docente -->
+        <div class="form__row">
+          <div class="field">
+            <label class="field__label" for="atributoEgreso">
+              Atributo de egreso
+            </label>
+            <select id="atributoEgreso" name="AtributoEgresoId" class="field__input">
+              <option value="">Selecciona un atributo…</option>
+              <!-- Opciones de ejemplo, aquí irán los AtributoEgreso desde BD -->
+              <option value="1">A1 - Comunicación efectiva</option>
+              <option value="2">A2 - Trabajo en equipo</option>
+              <option value="3">A3 - Pensamiento crítico</option>
+            </select>
+            <p class="field__help">
+              Corresponde al <strong>AtributoEgresoId</strong>.
+            </p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="docente">
+              Docente responsable
+            </label>
+            <select id="docente" name="DocenteId" class="field__input">
+              <option value="">Selecciona un docente…</option>
+              <!-- Opciones de ejemplo, aquí irán los docentes desde BD -->
+              <option value="1">jmorach — Jesús Mora Chanocua</option>
+              <option value="2">mlopez — Mariana López</option>
+              <option value="3">rcasas — Rodrigo Casas</option>
+            </select>
+            <p class="field__help">
+              Corresponde al <strong>DocenteId</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fila 2: Clave materia & Nivel -->
+        <div class="form__row">
+          <div class="field">
+            <label class="field__label" for="claveMateria">
+              Clave de la materia
+            </label>
+            <input
+              id="claveMateria"
+              name="ClaveMateria"
+              type="text"
+              class="field__input"
+              placeholder="ISC–201"
+            />
+            <p class="field__help">
+              Código oficial de la materia (varchar).
+            </p>
+          </div>
+
+          <div class="field field--sm">
+            <label class="field__label" for="nivel">
+              Nivel
+            </label>
+            <select id="nivel" name="Nivel" class="field__input">
+              <option value="">Selecciona nivel…</option>
+              <option value="I">I — Inicial</option>
+              <option value="M">M — Medio</option>
+              <option value="A">A — Avanzado</option>
+            </select>
+            <p class="field__help">
+              Campo <strong>char</strong> (I, M o A).
+            </p>
+          </div>
+        </div>
+
+        <!-- Fila 3: Periodo & Grupo -->
+        <div class="form__row">
+          <div class="field">
+            <label class="field__label" for="periodo">
+              Periodo
+            </label>
+            <input
+              id="periodo"
+              name="Periodo"
+              type="text"
+              class="field__input"
+              placeholder="AGO25ENE26"
+            />
+            <p class="field__help">
+              Identificador del semestre o ciclo (varchar).
+            </p>
+          </div>
+
+          <div class="field field--sm">
+            <label class="field__label" for="grupo">
+              Grupo
+            </label>
+            <input
+              id="grupo"
+              name="Grupo"
+              type="text"
+              class="field__input"
+              placeholder="A, B, C…"
+            />
+            <p class="field__help">
+              Grupo asignado (varchar), por ejemplo: ISC–A.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fila 4: Es especialidad -->
+        <div class="form__row">
+          <div class="field field--inline">
+            <label class="field__label">Tipo de materia</label>
+            <label class="check">
+              <input type="checkbox" id="esEspecialidad" name="EsEspecialidad" checked />
+              <span>Es materia de especialidad</span>
+            </label>
+            <p class="field__help">
+              Se guarda como <strong>tinyint</strong> (1 = sí, 0 = no).
+            </p>
+          </div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">Guardar</button>
+          <button type="button" class="btn btn--ghost">Cancelar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modal de Instrucciones (el mismo que ya usas) -->
+  <div class="modal" id="instructionsModal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+      <div class="modal__header">
+        <h2 class="modal__title" id="instructionsTitle">Instrucciones de la plataforma</h2>
+        <button class="modal__close" id="closeInstructions" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal__body">
+        <!-- tu texto de instrucciones -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar       = document.getElementById('sidebar');
+      const backdrop      = document.getElementById('backdrop');
+      const openBtn       = document.getElementById('menuButton');
+      const closeBtn      = document.getElementById('closeMenu');
+
+      const modal         = document.getElementById('instructionsModal');
+      const modalBackdrop = modal.querySelector('.modal__backdrop');
+      const modalClose    = document.getElementById('closeInstructions');
+      const instructionsLink = document.getElementById('menuInstructions');
+
+      const openMenu = () => {
+        sidebar.classList.add('sidebar--open');
+        backdrop.classList.add('backdrop--visible');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeMenu = () => {
+        sidebar.classList.remove('sidebar--open');
+        backdrop.classList.remove('backdrop--visible');
+        document.body.classList.remove('no-scroll');
+      };
+
+      const openModal = () => {
+        modal.classList.add('modal--open');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('modal--open');
+        document.body.classList.remove('no-scroll');
+      };
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      backdrop.addEventListener('click', closeMenu);
+
+      instructionsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+        openModal();
+      });
+
+      modalBackdrop.addEventListener('click', closeModal);
+      modalClose.addEventListener('click', closeModal);
+    });
+  </script>
+</body>
+</html>
