@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Tabla del Atributo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos ligeros locales para la tabla */
+    .container { padding: 24px; }
+    .atributo-header {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:16px;
+    }
+    .atributo-title { font-size:22px; color:#073b59; font-weight:700; }
+    .btn-back { background:#073b59; color:white; padding:8px 12px; border-radius:6px; text-decoration:none; }
+    .sheet {
+      background:white;
+      border-radius:6px;
+      padding:12px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    table.big-table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+    }
+    table.big-table th, table.big-table td {
+      border:1px solid #c7c7c7;
+      padding:8px;
+      vertical-align:top;
+    }
+
+    table.big-table th {
+      background:#0ea5e9;
+      color:white;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .col-criterio { width:30%; }
+    .col-indicador { width:30%; }
+    .col-curso { width:18%; }
+    .col-docente { width:12%; }
+    .col-resultado { width:10%; text-align:center; }
+
+    .section-label {
+      background:#e9f0f4;
+      font-weight:700;
+      padding:6px;
+    }
+
+    /* fila pequeña para codigo de curso y semestres */
+    .small { font-size:12px; color:#333; }
+
+    @media (max-width:900px){
+      .col-curso, .col-docente, .col-resultado { display:none; }
+      .atributo-header { flex-direction:column; align-items:flex-start; gap:8px; }
+    }
+  </style>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 40px;
+    }
+
+    h2 {
+        color: #0ea5e9;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    th {
+        background: #0ea5e9;
+        color: white;
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    tr:nth-child(even) {
+        background: #f7f7f7;
+    }
+
+    .btn-container {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border: none;
+        background: #0ea5e9;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 5px;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #0ea5e9;
+    }
+
+    .editing {
+        background: #fff1b5 !important;
+    }
+
+    .atributo-header > div:last-child {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-back {
+    white-space: nowrap;
+}
+
+</style>
+</head>
+<body class="app">
+<!--_____________________________________________________________________________________________________________--->
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+    <div class="topbar__title">Bienvenido</div>
+
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html"><span class="menu__icon"></span><span>Inicio</span></a>
+      <a class="menu__item" href="#"><span class="menu__icon"></span><span>AGO25ENE26</span></a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions"><span class="menu__icon"></span><span>Instrucciones</span></a>
+      <a class="menu__item" href="aviso-privacidad.html"><span class="menu__icon"></span><span>Aviso de privacidad</span></a>
+    </div>
+
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
+
+      <a class="menu__item" href="usuarios.html">
+        <span class="menu__icon"></span><span>Usuarios</span>
+      </a>
+
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon"></span><span>Maestros</span>
+      </a>
+
+      <a class="menu__item" href="admin-materias.html">
+        <span class="menu__icon"></span><span>Materias</span>
+      </a>
+
+      <a class="menu__item" href="atributos.html">
+        <span class="menu__icon"></span><span>Configurar atributos N</span>
+      </a>
+    </div>
+
+
+<!--_____________________________________________________________________________________________________________--->
+  </aside>
+
+  <main class="content">
+    <div class="container">
+
+      <div class="atributo-header">
+        <div>
+          <div class="atributo-title" id="atributoTitle">Atributo A1 — Diseña, mejora e integra sistemas productivos...</div>
+          <div class="small" id="atributoSubtitle">(Selecciona "Volver" para regresar a la lista de atributos)</div>
+        </div>
+        <div>
+          <a href="atributos.html" class="btn-back">← Volver</a>
+          <button class="btn-back" id="editBtn" style="background:#0ea5e9;">Editar tabla</button>
+          <button class="btn-back" id="saveBtn" style="background:#0a8f3b; display:none;">Guardar cambios</button>
+
+        </div>
+      </div>
+
+      <div class="sheet" id="sheetContent">
+
+        <!-- La tabla principal: columnas basadas en las imágenes -->
+        <table class="big-table" id="bigTable">
+          <thead>
+            <tr>
+              <th class="col-criterio">2. Criterios de desempeño</th>
+              <th class="col-indicador">3. Indicadores</th>
+              <th class="col-curso">4. Curso (clave — nombre)</th>
+              <th class="col-docente">8. Responsable</th>
+              <th class="col-resultado">9. Resultado / 10. Meta</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- CD1 (pagina 1 foto) -->
+            <tr>
+              <td>
+                <strong>CD1</strong><br>
+                Conoce las principales herramientas para la solución de problemas involucrados en los sistemas de manufactura.
+              </td>
+
+              <td>
+                1) Identifica los instrumentos LEAN para la solución de problemas en un sistema de manufactura.<br>
+                2) Aplica la metodología de una herramienta Lean para un problema práctico.
+              </td>
+
+              <td class="small">
+                INF-1028 — Sistemas de Manufactura<br>
+                (Periodo: Agosto 2023 - Enero 2024)
+              </td>
+
+              <td>Mtro. Miguel Ángel Sierra López</td>
+
+              <td>
+                Sí<br>
+                <small>Meta: 85%</small>
+              </td>
+            </tr>
+
+            <!-- CD1 - segunda fila relacionada (la foto mostraba dos filas de INF-1028) -->
+            <tr>
+              <td><strong>CD1 (continuación)</strong><br>
+                En la práctica de solución de problemas de manufactura se analiza un caso donde se pueden observar los puntos de calidad y se analiza para brindar una solución a la causa raíz.
+              </td>
+
+              <td>
+                (Indicadores prácticos: aplicar checklist, análisis causa raíz, propuesta de mejora)
+              </td>
+
+              <td class="small">
+                INF-1028 — Sistemas de Manufactura<br>
+                (Periodo: Agosto 2023 - Enero 2024)
+              </td>
+
+              <td>Mtro. Miguel Ángel Sierra López</td>
+
+              <td>
+                Sí — 85%
+              </td>
+            </tr>
+
+            <!-- CD2 (página 2 de la foto) -->
+            <tr>
+              <td>
+                <strong>CD2</strong><br>
+                Aplica los principios y herramientas del diseño de red logística Lean para optimizar la configuración de la cadena de suministro y reducir los desperdicios.
+              </td>
+
+              <td>
+                1) Elabora una investigación sobre ejemplos de empresas que han aplicado Lean en su proceso logístico.<br>
+                2) Propone mejoras en la logística utilizando herramientas Lean.
+              </td>
+
+              <td class="small">
+                DOF-2305 — Logística Industrial<br>
+                (Periodo: Enero 2024 - Junio 2024)
+              </td>
+
+              <td>Ing. Juan Leonardo Albiter Pontífices</td>
+
+              <td>
+                Sí — 85%
+              </td>
+            </tr>
+
+            <!-- CD3 -->
+            <tr>
+              <td>
+                <strong>CD3</strong><br>
+                Identificar, construir y utilizar redes para representar un problema a fin de optimizar su solución.
+              </td>
+
+              <td>
+                1) Menciona las diferencias y semejanzas de los diferentes modelos de redes.<br>
+                2) Resuelve modelos para los diferentes problemas de redes tomando en cuenta las diferencias entre ellos.
+              </td>
+
+              <td class="small">
+                INC-1019 — Investigación de Operaciones II<br>
+                (Periodo: Agosto 2023 - Enero 2024)
+              </td>
+
+              <td>Ing. Silvestre Soto Valdez</td>
+
+              <td>
+                Sí — 85%
+              </td>
+            </tr>
+
+            <!-- CD4 -->
+            <tr>
+              <td>
+                <strong>CD4</strong><br>
+                Discutir los principios básicos y el impacto del sistema Justo a Tiempo (JIT) en la competitividad de las organizaciones actuales, así como las condiciones necesarias para su aplicación.
+              </td>
+
+              <td>
+                1) Compara el sistema tradicional con el sistema Justo a Tiempo y evalúa ventajas y desventajas de ambos enfoques.<br>
+                2) Analiza la relación existente entre todos los elementos del sistema justo a tiempo.
+              </td>
+
+              <td class="small">
+                INC-1002 — Administración de las Operaciones II<br>
+                (Periodo: Enero 2024 - Junio 2024)
+              </td>
+
+              <td>Ing. Silvestre Soto Valdez</td>
+
+              <td>
+                Sí — 85%
+              </td>
+            </tr>
+
+            <!-- CD5 -->
+            <tr>
+              <td>
+                <strong>CD5</strong><br>
+                Utiliza Power Pivot para el modelado relacional y tratamiento de datos.
+              </td>
+
+              <td>
+                1) Identifica y utiliza la interfaz con las funciones principales de Power Pivot para el análisis de datos.<br>
+                2) Revisa casos de aplicación de modelado relacional y tratamiento de datos.
+              </td>
+
+              <td class="small">
+                DOH-2304 — Introducción al Análisis de Datos<br>
+                (Periodo: Enero 2024 - Junio 2024)
+              </td>
+
+              <td>Ing. Silvestre Soto Valdez</td>
+
+              <td>
+                Sí — 85%
+              </td>
+            </tr>
+
+            <!-- filas vacías (CD6, CD7) según el formato de la cédula -->
+            <tr>
+              <td><strong>CD6</strong><br>—</td>
+              <td>—</td>
+              <td class="small">—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+
+            <tr>
+              <td><strong>CD7</strong><br>—</td>
+              <td>—</td>
+              <td class="small">—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <!-- Pie con notas -->
+        <div style="margin-top:12px; font-size:13px; color:#444;">
+          
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  const table = document.getElementById("bigTable");
+  const editBtn = document.getElementById("editBtn");
+  const saveBtn = document.getElementById("saveBtn");
+
+  let editing = false;
+
+  editBtn.addEventListener("click", () => {
+    editing = true;
+    saveBtn.style.display = "inline-block";
+    editBtn.style.display = "none";
+
+    // Hacer todas las celdas editables
+    table.querySelectorAll("td").forEach(td => {
+      td.contentEditable = true;
+      td.classList.add("editing");
+    });
+  });
+
+  saveBtn.addEventListener("click", () => {
+    editing = false;
+    saveBtn.style.display = "none";
+    editBtn.style.display = "inline-block";
+
+    // Bloquear edición
+    table.querySelectorAll("td").forEach(td => {
+      td.contentEditable = false;
+      td.classList.remove("editing");
+    });
+
+    alert("Cambios guardados (nota: esta versión guarda solo en el navegador)");
+  });
+</script>
+
+
+  <script>
+    // Sidebar logic (igual que en otros archivos)
+    document.getElementById('menuButton').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.add('sidebar--open');
+      document.getElementById('backdrop').classList.add('backdrop--visible');
+    });
+    document.getElementById('closeMenu').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('sidebar--open');
+      document.getElementById('backdrop').classList.remove('backdrop--visible');
+    });
+    document.getElementById('backdrop').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('sidebar--open');
+      document.getElementById('backdrop').classList.remove('backdrop--visible');
+    });
+
+    // Si quieres que la página muestre la tabla de otro atributo según ?id=A2 etc,
+    // puedes pasar el id en la query string y aquí cargar datos dinámicamente.
+    (function loadFromQuery() {
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id') || 'A1';
+      const titleEl = document.getElementById('atributoTitle');
+
+      // Por ahora solo A1 tiene contenido (según tus fotos).
+      if (id === 'A1') {
+        titleEl.textContent = 'Atributo A1 — Diseña, mejora e integra sistemas productivos de bienes y servicios aplicando tecnologías para su optimización.';
+      } else {
+        titleEl.textContent = id + ' — Tabla del atributo (no disponible: revisar)';
+        // podríamos ocultar la tabla o mostrar mensaje; dejo la tabla como plantilla.
+      }
+    })();
+  </script>
+
+</body>
+</html>

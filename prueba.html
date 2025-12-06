@@ -1,48 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Se'si Eskani — Iniciar sesión</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<title>Tabla de Atributos</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 40px;
+    }
+
+    h2 {
+        color: #073b59;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    th {
+        background: #073b59;
+        color: white;
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    tr:nth-child(even) {
+        background: #f7f7f7;
+    }
+
+    .btn-container {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border: none;
+        background: #073b59;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 5px;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #052e44;
+    }
+
+    .editing {
+        background: #fff1b5 !important;
+    }
+</style>
 </head>
-<body class="auth">
-  <div class="auth__panel">
-    <div class="auth__brand">
-      <img src="logo.svg" alt="Se'si Eskani" class="auth__logo">
-      <h1 class="auth__title">Se'si Eskani</h1>
-      <p class="auth__subtitle">Accede para continuar</p>
-    </div>
+<body>
 
-    <form class="form" action="#" method="post" autocomplete="on">
-      <label class="field">
-        <span class="field__label">Correo institucional</span>
-        <input class="field__input" type="email" name="email" placeholder="tucorreo@ejemplo.edu" required>
-      </label>
+<h2>Tabla — Atributos de Egreso</h2>
 
-      <label class="field">
-        <span class="field__label">Contraseña</span>
-        <input class="field__input" type="password" name="password" placeholder="••••••••" required>
-      </label>
+<div class="btn-container">
+    <button class="btn" onclick="mostrarTabla()">Ver tabla</button>
+    <button class="btn" onclick="editarTabla()">Editar tabla</button>
+    <button class="btn" onclick="guardarCambios()">Guardar cambios</button>
+</div>
 
-      <div class="form__extras">
-        <label class="check">
-          <input type="checkbox" />
-          <span>Mantener sesión iniciada</span>
-        </label>
-        <a class="link" href="#">¿Olvidaste tu contraseña?</a>
-      </div>
+<table id="tablaAtributos" style="display:none;">
+    <thead>
+    <tr>
+        <th>Atributo</th>
+        <th>Criterio de desempeño</th>
+        <th>Indicador</th>
+        <th>Cursos donde se evalúa</th>
+        <th>Evidencias</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1. Aplicación de conocimientos de matemáticas</td>
+            <td>Resuelve problemas complejos usando modelos matemáticos</td>
+            <td>1.1 Selecciona herramientas matemáticas adecuadas</td>
+            <td>Cálculo, Álgebra lineal</td>
+            <td>Prácticas, exámenes, proyectos</td>
+        </tr>
 
-      <button class="btn btn--primary" type="submit">Iniciar sesión</button>
-      <a class="btn btn--ghost" href="index.html">Entrar como invitado</a>
-    </form>
+        <tr>
+            <td>2. Diseño y desarrollo de soluciones</td>
+            <td>Genera soluciones efectivas a problemas reales</td>
+            <td>2.3 Desarrolla propuestas originales</td>
+            <td>Diseño industrial, Simulación</td>
+            <td>Reportes, prototipos, presentaciones</td>
+        </tr>
 
-    <footer class="auth__footer">
-      <a class="link" href="#">Aviso de privacidad</a> ·
-      <a class="link" href="#">Soporte</a>
-    </footer>
-  </div>
+        <tr>
+            <td>3. Trabajo en equipo</td>
+            <td>Colabora y se comunica eficazmente</td>
+            <td>3.1 Participa de forma activa en equipos</td>
+            <td>Talleres, proyectos integradores</td>
+            <td>Evaluación por pares, listas de cotejo</td>
+        </tr>
+    </tbody>
+</table>
 
-  <div class="auth__bg"></div>
+<script>
+function mostrarTabla() {
+    document.getElementById("tablaAtributos").style.display = "table";
+}
+
+function editarTabla() {
+    const celdas = document.querySelectorAll("#tablaAtributos td");
+
+    celdas.forEach(celda => {
+        celda.contentEditable = "true";
+        celda.classList.add("editing");
+    });
+
+    alert("Ahora puedes editar la tabla.\nCuando termines, presiona 'Guardar cambios'.");
+}
+
+function guardarCambios() {
+    const tabla = document.getElementById("tablaAtributos").innerHTML;
+    localStorage.setItem("tablaGuardada", tabla);
+
+    const celdas = document.querySelectorAll("#tablaAtributos td");
+    celdas.forEach(celda => celda.classList.remove("editing"));
+
+    alert("Cambios guardados.");
+}
+
+window.onload = () => {
+    const guardada = localStorage.getItem("tablaGuardada");
+    if (guardada) {
+        document.getElementById("tablaAtributos").innerHTML = guardada;
+    }
+};
+</script>
+
 </body>
 </html>
