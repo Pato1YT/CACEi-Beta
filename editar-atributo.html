@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Editar atributo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app">
+<!--_____________________________________________________________________________________________________________--->  
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+    <div class="topbar__title">Editar atributo</div>
+
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html"><span class="menu__icon"></span><span>Inicio</span></a>
+      <a class="menu__item" href="#"><span class="menu__icon"></span><span>AGO25ENE26</span></a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions"><span class="menu__icon"></span><span>Instrucciones</span></a>
+      <a class="menu__item" href="aviso-privacidad.html"><span class="menu__icon"></span><span>Aviso de privacidad</span></a>
+    </div>
+
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
+
+      <a class="menu__item" href="usuarios.html">
+        <span class="menu__icon"></span><span>Usuarios</span>
+      </a>
+
+      <a class="menu__item" href="docentes.html">
+        <span class="menu__icon"></span><span>Maestros</span>
+      </a>
+
+      <a class="menu__item" href="admin-materias.html">
+        <span class="menu__icon"></span><span>Materias</span>
+      </a>
+
+      <a class="menu__item menu__item--active" href="atributos.html">
+        <span class="menu__icon"></span><span>Configurar atributos N</span>
+      </a>
+    </div>
+  </aside>
+<!--_____________________________________________________________________________________________________________--->  
+
+  <main class="content">
+    <section class="card">
+      <div class="card__header">
+        <h2 class="card__title">Editar atributo de egreso</h2>
+        <a href="atributos.html" class="btn btn--ghost">Volver a la lista</a>
+      </div>
+
+      <form class="form">
+        <!-- ID del atributo (solo lectura) -->
+        <div class="field">
+          <label class="field__label" for="AtributoId">ID del atributo</label>
+          <input
+            class="field__input"
+            id="AtributoId"
+            type="text"
+            value="A1"
+            readonly
+          />
+        </div>
+
+        <!-- Descripción del atributo -->
+        <div class="field">
+          <label class="field__label" for="AtributoDescripcion">Descripción del atributo</label>
+          <textarea
+            class="field__input"
+            id="AtributoDescripcion"
+            rows="4"
+            placeholder="Escribe la descripción del atributo de egreso…"
+          >Diseña, mejora e integra sistemas productivos de bienes y servicios aplicando tecnologías para su optimización.</textarea>
+        </div>
+
+        <!-- (Opcional) Campo de notas internas -->
+        <div class="field">
+          <label class="field__label" for="AtributoNotas">Notas internas (opcional)</label>
+          <textarea
+            class="field__input"
+            id="AtributoNotas"
+            rows="3"
+            placeholder="Notas o aclaraciones para uso interno (no se muestran a los estudiantes)…"
+          ></textarea>
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">Guardar cambios</button>
+          <a href="atributos.html" class="btn btn--ghost">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modal de Instrucciones -->
+  <div class="modal" id="instructionsModal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+      <div class="modal__header">
+        <h2 class="modal__title" id="instructionsTitle">Instrucciones de la plataforma</h2>
+        <button class="modal__close" id="closeInstructions" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="modal__body">
+        <p><strong>Hola.</strong></p>
+        <p>Aquí puedes editar la información del atributo de egreso seleccionado. No olvides guardar los cambios.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('backdrop');
+      const openBtn = document.getElementById('menuButton');
+      const closeBtn = document.getElementById('closeMenu');
+
+      const modal = document.getElementById('instructionsModal');
+      const modalBackdrop = modal.querySelector('.modal__backdrop');
+      const modalClose = document.getElementById('closeInstructions');
+      const instructionsLink = document.getElementById('menuInstructions');
+
+      const openMenu = () => {
+        sidebar.classList.add('sidebar--open');
+        backdrop.classList.add('backdrop--visible');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeMenu = () => {
+        sidebar.classList.remove('sidebar--open');
+        backdrop.classList.remove('backdrop--visible');
+        document.body.classList.remove('no-scroll');
+      };
+
+      const openModal = () => {
+        modal.classList.add('modal--open');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('modal--open');
+        document.body.classList.remove('no-scroll');
+      };
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      backdrop.addEventListener('click', closeMenu);
+
+      instructionsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+        openModal();
+      });
+
+      modalBackdrop.addEventListener('click', closeModal);
+      modalClose.addEventListener('click', closeModal);
+    });
+  </script>
+
+</body>
+</html>

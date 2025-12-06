@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Detalle de la materia</title>
+
+  <!-- Tus estilos globales -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Bootstrap Icons (para los íconos de las acciones) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* CONTENEDOR GENERAL */
+    .layout {
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* TARJETA DE MATERIA (DATOS ARRIBA) */
+    .card--course {
+      padding: 24px 28px;
+    }
+
+    .course-header {
+      font-size: 20px;
+      font-weight: 700;
+      color: #053b5c;
+      margin-bottom: 8px;
+    }
+
+    .course-subtitle {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px 24px;
+      font-size: 14px;
+    }
+
+    .course-field-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .course-field-value {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* TARJETA EVIDENCIAS */
+    .card--evidences {
+      padding: 24px 28px;
+    }
+
+    .evidences-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .evidences-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #053b5c;
+    }
+
+    .evidences-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      max-width: 720px;
+    }
+
+    /* LISTA DE EVIDENCIAS (UNA DEBAJO DE OTRA) */
+    .evidences-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .evidence-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: #ffffff;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px 16px;
+      align-items: center;
+    }
+
+    .evidence-number {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f1f5f9;
+    }
+
+    .evidence-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .evidence-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .evidence-description {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .evidence-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .badge-status {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      font-weight: 500;
+    }
+
+    .badge-file {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px dashed #cbd5f5;
+    }
+
+    /* ACCIONES (ICONOS BOOTSTRAP) */
+    .evidence-actions {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .icon-btn--upload {
+      background: #e0f2fe;
+      color: #0284c7;
+    }
+    .icon-btn--view {
+      background: #ecfeff;
+      color: #0f766e;
+    }
+    .icon-btn--delete {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.97);
+    }
+
+    .icon-btn:active {
+      transform: translateY(0);
+      filter: none;
+    }
+
+    @media (max-width: 768px) {
+      .evidence-item {
+        grid-template-columns: 1fr;
+      }
+      .evidence-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    /* NOTA FINAL */
+    .evidences-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body class="app">
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+    <div class="topbar__title">Bienvenido</div>
+
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html"><span class="menu__icon"></span><span>Inicio</span></a>
+      <a class="menu__item" href="#"><span class="menu__icon"></span><span>AGO25ENE26</span></a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions"><span class="menu__icon"></span><span>Instrucciones</span></a>
+      <a class="menu__item" href="aviso-privacidad.html"><span class="menu__icon"></span><span>Aviso de privacidad</span></a>
+    </div>
+
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
+      <a class="menu__item" href="usuarios.html"><span class="menu__icon"></span><span>Usuarios</span></a>
+      <a class="menu__item" href="docentes.html"><span class="menu__icon"></span><span>Maestros</span></a>
+      <a class="menu__item" href="admin-materias.html"><span class="menu__icon"></span><span>Materias</span></a>
+      <a class="menu__item" href="atributos.html"><span class="menu__icon"></span><span>Configurar atributos N</span></a>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="content">
+    <div class="layout">
+      <div class="page">
+
+        <!-- DATOS DE LA MATERIA (ARRIBA) -->
+        <section class="card card--course">
+          <div class="course-header">
+            AGO25–ENE26 · Gestión de Proyectos de Software A
+          </div>
+          <div class="course-subtitle">
+            Detalle de la materia y evidencias para el atributo seleccionado.
+          </div>
+
+          <div class="course-grid">
+            <div>
+              <div class="course-field-label">Clave</div>
+              <div class="course-field-value">ISC-401</div>
+            </div>
+            <div>
+              <div class="course-field-label">Docente</div>
+              <div class="course-field-value">Mtro. Jesús Mora Chanocua</div>
+            </div>
+            <div>
+              <div class="course-field-label">Grupo</div>
+              <div class="course-field-value">A</div>
+            </div>
+            <div>
+              <div class="course-field-label">Periodo</div>
+              <div class="course-field-value">AGO25–ENE26</div>
+            </div>
+            <div>
+              <div class="course-field-label">Atributo de egreso</div>
+              <div class="course-field-value">AE1 — Comunicación efectiva</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EVIDENCIAS (UNA DEBAJO DE OTRA) -->
+        <section class="card card--evidences">
+          <div class="evidences-header">
+            <div class="evidences-title">Evidencias de la materia</div>
+            <p class="evidences-subtitle">
+              Para esta materia solo se requiere un trabajo representativo, su rúbrica y el reporte de logro correspondiente.
+            </p>
+          </div>
+
+          <div class="evidences-list">
+            <!-- 1. TRABAJO -->
+            <article class="evidence-item">
+              <span class="evidence-number">1</span>
+
+              <div class="evidence-main">
+                <div class="evidence-name">Trabajo</div>
+                <div class="evidence-description">
+                  Producto o proyecto representativo realizado en la materia.
+                </div>
+                <div class="evidence-meta">
+                  <span class="badge-status">Pendiente</span>
+                  <span class="badge-file">Sin archivo</span>
+                </div>
+              </div>
+
+              <div class="evidence-actions">
+                <button class="icon-btn icon-btn--upload" title="Subir archivo">
+                  <i class="bi bi-upload"></i>
+                </button>
+                <button class="icon-btn icon-btn--view" title="Ver archivo">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button class="icon-btn icon-btn--delete" title="Eliminar archivo">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </article>
+
+            <!-- 2. RÚBRICA -->
+            <article class="evidence-item">
+              <span class="evidence-number">2</span>
+
+              <div class="evidence-main">
+                <div class="evidence-name">Rúbrica</div>
+                <div class="evidence-description">
+                  Instrumento de evaluación utilizado para calificar el trabajo.
+                </div>
+                <div class="evidence-meta">
+                  <span class="badge-status">Pendiente</span>
+                  <span class="badge-file">Sin archivo</span>
+                </div>
+              </div>
+
+              <div class="evidence-actions">
+                <button class="icon-btn icon-btn--upload" title="Subir archivo">
+                  <i class="bi bi-upload"></i>
+                </button>
+                <button class="icon-btn icon-btn--view" title="Ver archivo">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button class="icon-btn icon-btn--delete" title="Eliminar archivo">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </article>
+
+            <!-- 3. REPORTE DE LOGRO -->
+            <article class="evidence-item">
+              <span class="evidence-number">3</span>
+
+              <div class="evidence-main">
+                <div class="evidence-name">Reporte de logro</div>
+                <div class="evidence-description">
+                  Reporte del nivel de logro obtenido a partir del trabajo y la rúbrica.
+                </div>
+                <div class="evidence-meta">
+                  <span class="badge-status">Pendiente</span>
+                  <span class="badge-file">Sin archivo</span>
+                </div>
+              </div>
+
+              <div class="evidence-actions">
+                <button class="icon-btn icon-btn--upload" title="Subir archivo">
+                  <i class="bi bi-upload"></i>
+                </button>
+                <button class="icon-btn icon-btn--view" title="Ver archivo">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button class="icon-btn icon-btn--delete" title="Eliminar archivo">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <p class="evidences-note">
+            * Cuando subas un archivo puedes cambiar el estado a “Registrado” desde el backend o con lógica JavaScript.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Lógica básica para el sidebar e instrucciones (igual que en tus otras vistas) -->
+  <div class="modal" id="instructionsModal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+      <div class="modal__header">
+        <h2 class="modal__title" id="instructionsTitle">Instrucciones de la plataforma</h2>
+        <button class="modal__close" id="closeInstructions" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal__body">
+        <p><strong>Hola.</strong></p>
+        <p>Antes de empezar considera lo siguiente:</p>
+        <ul>
+          <li>Si no has cambiado tu contraseña …</li>
+          <li>Esta plataforma es accesible desde varios puntos …</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('backdrop');
+      const openBtn = document.getElementById('menuButton');
+      const closeBtn = document.getElementById('closeMenu');
+
+      const modal = document.getElementById('instructionsModal');
+      const modalBackdrop = modal.querySelector('.modal__backdrop');
+      const modalClose = document.getElementById('closeInstructions');
+      const instructionsLink = document.getElementById('menuInstructions');
+
+      const openMenu = () => {
+        sidebar.classList.add('sidebar--open');
+        backdrop.classList.add('backdrop--visible');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeMenu = () => {
+        sidebar.classList.remove('sidebar--open');
+        backdrop.classList.remove('backdrop--visible');
+        document.body.classList.remove('no-scroll');
+      };
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      backdrop.addEventListener('click', closeMenu);
+
+      const openModal = () => {
+        modal.classList.add('modal--open');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('modal--open');
+        document.body.classList.remove('no-scroll');
+      };
+
+      instructionsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+        openModal();
+      });
+
+      modalBackdrop.addEventListener('click', closeModal);
+      modalClose.addEventListener('click', closeModal);
+    });
+  </script>
+</body>
+</html>
