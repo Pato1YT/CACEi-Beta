@@ -16,7 +16,7 @@
 
   <main class="content">
     <section class="card">
-      <h2 class="card__title">Registrar nuevo docente</h2>
+      <h2 class="card__title">Registrar nuevo usuario</h2>
 
       <form class="form">
         <div class="field">
@@ -24,7 +24,17 @@
           <input class="field__input" id="NombreDocente" type="text" placeholder="jmorach">
         </div>
 
-    
+        
+      <div class="field">
+  <label class="field__label" for="Rol">Rol</label>
+  <select id="Rol" class="field__input">
+    <option value="">Seleccionar rol</option>
+    <option value="admin">Administrador</option>
+    <option value="docente">Docente</option>
+    <option value="usuario">Usuario general</option>
+  </select>
+</div>
+
 
         <div class="field">
           <label class="field__label" for="Email">Email</label>

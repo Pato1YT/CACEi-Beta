@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Se'si Eskani — Materias</title>
+  <title>Editar materia — Se'si Eskani</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="app">
+
   <!-- Topbar -->
   <header class="topbar">
     <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
-    <div class="topbar__title">Materias</div>
+    <div class="topbar__title">Editar materia</div>
 
     <div class="topbar__actions">
       <span class="dot"></span>
@@ -68,135 +69,126 @@
     </div>
   </aside>
 
-  <!-- Contenido -->
+  <!-- Contenido principal -->
   <main class="content">
-    <section class="card list-card">
-      <header class="list-card__header">
-        <div>
-          <h1 class="list-card__title">Materias</h1>
-          <p class="list-card__subtitle">
-            Gestiona las materias asignadas a los docentes y atributos de egreso.
-          </p>
-        </div>
-        <a href="crear-materia.html" class="btn btn--primary list-card__cta">
-          Nueva materia
-        </a>
+    <section class="card form-card">
+      <header class="form-card__header">
+        <h1 class="form-card__title">Editar materia</h1>
+        <p class="list-card__subtitle">
+          Actualiza los datos de la materia seleccionada.
+        </p>
       </header>
 
-      <!-- Filtros -->
-      <div class="list-filters">
-        <div class="list-filters__left">
-          <input type="search"
-                 class="field__input field__input--sm"
-                 placeholder="Buscar por clave, materia, atributo o docente..." />
+      <!-- Formulario en grid -->
+      <form class="form-grid">
+
+        <!-- Clave de materia -->
+        <div class="field">
+          <label class="field__label" for="ClaveMateria">Clave de la materia</label>
+          <input
+            id="ClaveMateria"
+            class="field__input field__input--short"
+            type="text"
+            placeholder="ISC-101"
+            value="ISC-101"
+          />
+          <p class="field__help">Usa el formato oficial de la retícula (ej. ISC-101).</p>
         </div>
-        <div class="list-filters__right">
-          <select class="field__input field__input--sm">
-            <option value="">Todos los niveles</option>
-            <option value="I">Inicial</option>
-            <option value="M">Medio</option>
-            <option value="A">Avanzado</option>
+
+        <!-- Atributo de egreso -->
+        <div class="field">
+          <label class="field__label" for="AtributoEgresoId">Atributo de egreso</label>
+          <select id="AtributoEgresoId" class="field__input">
+            <option value="">Selecciona atributo…</option>
+            <option value="1" selected>AE1 — Comunicación efectiva</option>
+            <option value="3">AE3 — Pensamiento crítico</option>
+            <option value="6">AE6 — Gestión de proyectos</option>
           </select>
-          <select class="field__input field__input--sm">
-            <option value="">Todos los periodos</option>
-            <option>AGO25–ENE26</option>
+        </div>
+
+        <!-- Docente asignado -->
+        <div class="field">
+          <label class="field__label" for="DocenteId">Docente asignado</label>
+          <select id="DocenteId" class="field__input">
+            <option value="">Selecciona docente…</option>
+            <option value="1" selected>Jesús Mora Chanocua</option>
+            <option value="2">María López García</option>
+            <option value="3">Otro docente…</option>
+          </select>
+        </div>
+
+        <!-- Nivel -->
+        <div class="field">
+          <label class="field__label" for="Nivel">Nivel</label>
+          <select id="Nivel" class="field__input field__input--short">
+            <option value="">Selecciona nivel…</option>
+            <option value="I" selected>Inicial (I)</option>
+            <option value="M">Medio (M)</option>
+            <option value="A">Avanzado (A)</option>
+          </select>
+        </div>
+
+        <!-- Grupo -->
+        <div class="field">
+          <label class="field__label" for="Grupo">Grupo</label>
+          <input
+            id="Grupo"
+            class="field__input field__input--short"
+            type="text"
+            maxlength="3"
+            placeholder="A"
+            value="A"
+          />
+        </div>
+
+        <!-- Periodo -->
+        <div class="field">
+          <label class="field__label" for="Periodo">Periodo</label>
+          <select id="Periodo" class="field__input field__input--short">
+            <option value="">Selecciona periodo…</option>
+            <option selected>AGO25–ENE26</option>
             <option>ENE26–JUN26</option>
+            <option>AGO26–ENE27</option>
           </select>
         </div>
-      </div>
 
-      <!-- Tabla de materias -->
-      <div class="table-wrapper">
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Clave</th>
-            <th>Materia</th>
-            <th>Atributo egreso</th>
-            <th>Docente</th>
-            <th>Nivel</th>
-            <th>Grupo</th>
-            <th>Especialidad</th>
-            <th>Periodo</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <!-- Fila 1 -->
-          <tr>
-            <td>ISC-101</td>
-            <td>Cálculo Diferencial I</td>
-            <td>AE1 — Comunicación efectiva</td>
-            <td>Jesús Mora Chanocua</td>
-            <td>
-              <span class="badge badge--nivel badge--nivel-I">I</span>
-            </td>
-            <td>A</td>
-            <td>
-              <span class="badge badge--pill badge--yes">Sí</span>
-            </td>
-            <td>AGO25–ENE26</td>
-            <td class="table__actions">
-              <a href="editar-materia.html" class="btn btn--ghost btn--xs">Editar</a>
-              <button type="button" class="btn btn--danger btn--xs">Eliminar</button>
-            </td>
-          </tr>
+        <!-- Especialidad -->
+        <div class="field field--inline">
+          <label class="check">
+            <input id="EsEspecialidad" type="checkbox" checked />
+            <span>Cuenta como materia de especialidad</span>
+          </label>
+          <p class="field__help">
+            Marca esta opción si la materia forma parte del bloque de especialidad del programa.
+          </p>
+        </div>
 
-          <!-- Fila 2 -->
-          <tr>
-            <td>ISC-201</td>
-            <td>Estructuras de Datos</td>
-            <td>AE3 — Pensamiento crítico</td>
-            <td>María López García</td>
-            <td>
-              <span class="badge badge--nivel badge--nivel-M">M</span>
-            </td>
-            <td>B</td>
-            <td>
-              <span class="badge badge--pill badge--no">No</span>
-            </td>
-            <td>AGO25–ENE26</td>
-            <td class="table__actions">
-              <a href="editar-materia.html" class="btn btn--ghost btn--xs">Editar</a>
-              <button type="button" class="btn btn--danger btn--xs">Eliminar</button>
-            </td>
-          </tr>
-
-          <!-- Fila 3 -->
-          <tr>
-            <td>DOO-2003</td>
-            <td>Simulación</td>
-            <td>AE6 — Gestión de proyectos</td>
-            <td>Jesús Mora Chanocua</td>
-            <td>
-              <span class="badge badge--nivel badge--nivel-A">A</span>
-            </td>
-            <td>C</td>
-            <td>
-              <span class="badge badge--pill badge--yes">Sí</span>
-            </td>
-            <td>ENE26–JUN26</td>
-            <td class="table__actions">
-              <a href="editar-materia.html" class="btn btn--ghost btn--xs">Editar</a>
-              <button type="button" class="btn btn--danger btn--xs">Eliminar</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+        <!-- Acciones -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">Guardar cambios</button>
+          <a href="admin-materias.html" class="btn btn--ghost">Cancelar</a>
+        </div>
+      </form>
     </section>
   </main>
 
   <!-- Modal de Instrucciones -->
   <div class="modal" id="instructionsModal" aria-hidden="true">
     <div class="modal__backdrop"></div>
+
     <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
       <div class="modal__header">
         <h2 class="modal__title" id="instructionsTitle">Instrucciones de la plataforma</h2>
         <button class="modal__close" id="closeInstructions" aria-label="Cerrar">✕</button>
       </div>
+
       <div class="modal__body">
-        <!-- tu texto de instrucciones -->
+        <p><strong>Recuerda:</strong></p>
+        <ul>
+          <li>Verifica que la clave de materia y el periodo coincidan con la retícula oficial.</li>
+          <li>El docente debe existir previamente en el módulo de maestros.</li>
+          <li>Los cambios aplican solo para este periodo y grupo.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -249,5 +241,6 @@
       modalClose.addEventListener('click', closeModal);
     });
   </script>
+
 </body>
 </html>

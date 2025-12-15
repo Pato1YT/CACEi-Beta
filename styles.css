@@ -782,5 +782,38 @@ body{
   }
 }
 
+.field__input{
+  border:1px solid var(--border);
+  padding: 12px 12px;
+  border-radius:12px;
+  font-size:16px;
+  outline: none;
+  background:#fff;
+  font-weight: 400;          /* asegura que no vaya en negritas */
+}
+
+/* por si algún navegador pone el select más “gordito” */
+select.field__input{
+  font-weight: 400;
+}
 
 
+
+/* Acciones en tabla: editar / eliminar alineados a la derecha */
+.table__actions{
+  text-align:right;
+  white-space:nowrap;
+}
+.table__actions .btn{
+  margin-left:6px;
+}
+
+/* Botón de eliminar (rojo suave) */
+.btn--danger{
+  background:#fee2e2;
+  border-color:#fecaca;
+  color:#b91c1c;
+}
+.btn--danger:hover{
+  filter:brightness(.97);
+}

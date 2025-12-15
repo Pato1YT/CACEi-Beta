@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Se'si Eskani — Editar tabla del atributo</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ====== LAYOUT LOCAL PARA ESTA VISTA ====== */
+    body.app{
+      background:#f3f6fb;
+    }
+
+    .container-atributo{
+      width:90%;
+      max-width:1320px;
+      margin:24px auto 32px;
+    }
+
+    .atributo-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .atributo-title{
+      font-size:22px;
+      font-weight:700;
+      color:#0f172a;
+      margin:0 0 4px;
+    }
+    .atributo-subtitle{
+      font-size:13px;
+      color:#6b7280;
+    }
+
+    .atributo-header-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .btn-back--dark{
+      background:#0f2f44;
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-size:14px;
+      border:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .btn--primary-sm{
+      background:#0ea5e9;
+      color:#fff;
+      padding:8px 16px;
+      border-radius:999px;
+      border:none;
+      font-size:14px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn--primary-sm:hover{
+      filter:brightness(.96);
+    }
+
+    .btn--ghost-sm{
+      background:#fff;
+      border:1px solid #d1d5db;
+      color:#111827;
+      padding:8px 16px;
+      border-radius:999px;
+      font-size:14px;
+      cursor:pointer;
+    }
+
+    /* ====== TARJETA / HOJA ====== */
+    .sheet-edit{
+      background:#ffffff;
+      border-radius:14px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 14px 30px rgba(15,23,42,.08);
+      padding:14px 14px 18px;
+      overflow-x:auto;
+    }
+
+    /* ====== TABLA EDITABLE ====== */
+    .big-table-edit{
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+      table-layout:fixed;
+    }
+    .big-table-edit thead th{
+      background:#0ea5e9;
+      color:#fff;
+      padding:10px 8px;
+      border:1px solid #0c8cc6;
+      font-weight:600;
+      text-align:center;
+    }
+    .big-table-edit tbody td{
+      border:1px solid #e5e7eb;
+      padding:6px;
+      vertical-align:top;
+      background:#ffffff;
+    }
+    .big-table-edit tbody tr:nth-child(even) td{
+      background:#f9fafb;
+    }
+
+    .col-criterio{ width:30%; }
+    .col-indicador{ width:30%; }
+    .col-curso{ width:20%; }
+    .col-docente{ width:13%; }
+    .col-resultado{ width:12%; }
+
+    /* ====== CAMPOS DE EDICIÓN ====== */
+    .cell-input,
+    .cell-textarea{
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:8px;
+      font-size:13px;
+      padding:6px 8px;
+      resize:vertical;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;
+      background:#ffffff;
+      box-sizing:border-box;
+    }
+
+    .cell-textarea{
+      min-height:70px;
+      line-height:1.45;
+    }
+
+    .cell-input:focus,
+    .cell-textarea:focus{
+      outline:none;
+      border-color:#0ea5e9;
+      box-shadow:0 0 0 3px rgba(14,165,233,.22);
+      background:#f9feff;
+    }
+
+    .cell-input--sm{
+      padding:4px 6px;
+      font-size:12px;
+    }
+
+    .result-wrapper{
+      display:flex;
+      gap:6px;
+      align-items:center;
+    }
+    .result-wrapper span{
+      font-size:12px;
+      color:#6b7280;
+      white-space:nowrap;
+    }
+
+    .badge-col-hint{
+      font-size:11px;
+      color:#e5e7eb;
+      font-weight:400;
+    }
+
+    /* Notita bajo la tabla */
+    .edit-note{
+      margin-top:10px;
+      font-size:12px;
+      color:#6b7280;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:900px){
+      .atributo-header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .col-curso,
+      .col-docente,
+      .col-resultado{
+        width:auto;
+      }
+      .sheet-edit{
+        padding:10px;
+      }
+    }
+
+      /* Cabeceras: mismo grosor que en la vista de consulta */
+  table.big-table thead th,
+  table.edit-table thead th {
+    background: #0ea5e9;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;           /* << aquí está la diferencia */
+    text-align: center;
+
+    }
+
+    
+  </style>
+</head>
+<body class="app">
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="burger" id="menuButton" aria-label="Abrir menú">☰ Menu</button>
+    <div class="topbar__title">Bienvenido</div>
+    <div class="topbar__actions">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
+
+  <!-- Backdrop y sidebar (como en tus demás vistas) -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__header">
+      <div class="brand">
+        <div class="brand__name">Se'si Eskani</div>
+      </div>
+      <button class="sidebar__close" id="closeMenu" aria-label="Cerrar menú">⟵</button>
+    </div>
+
+    <nav class="menu">
+      <div class="menu__section-title">Menú principal</div>
+      <a class="menu__item" href="index.html"><span class="menu__icon"></span><span>Inicio</span></a>
+      <a class="menu__item" href="#"><span class="menu__icon"></span><span>AGO25ENE26</span></a>
+    </nav>
+
+    <div class="menu menu--secondary">
+      <div class="menu__section-title">Otros</div>
+      <a class="menu__item" href="#" id="menuInstructions"><span class="menu__icon"></span><span>Instrucciones</span></a>
+      <a class="menu__item" href="aviso-privacidad.html"><span class="menu__icon"></span><span>Aviso de privacidad</span></a>
+    </div>
+
+    <div class="menu menu--admin">
+      <div class="menu__section-title">Administración</div>
+      <a class="menu__item" href="usuarios.html"><span class="menu__icon"></span><span>Usuarios</span></a>
+      <a class="menu__item" href="docentes.html"><span class="menu__icon"></span><span>Maestros</span></a>
+      <a class="menu__item" href="admin-materias.html"><span class="menu__icon"></span><span>Materias</span></a>
+      <a class="menu__item" href="atributos.html"><span class="menu__icon"></span><span>Configurar atributos N</span></a>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+    <div class="container-atributo">
+      <header class="atributo-header">
+        <div>
+          <h1 class="atributo-title">
+            Editar tabla — Atributo A1
+          </h1>
+          <p class="atributo-subtitle">
+            Diseña, mejora e integra sistemas productivos de bienes y servicios aplicando tecnologías para su optimización.
+          </p>
+        </div>
+        <div class="atributo-header-actions">
+          <a href="atributos.html" class="btn-back--dark">← Volver</a>
+          <button type="button" id="btnGuardar" class="btn--primary-sm">Guardar cambios</button>
+          <button type="button" id="btnCancelar" class="btn--ghost-sm">Cancelar</button>
+        </div>
+      </header>
+
+      <section class="sheet-edit">
+        <table class="big-table-edit">
+          <thead>
+            <tr>
+              <th class="col-criterio">2. Criterios de desempeño</th>
+              <th class="col-indicador">3. Indicadores</th>
+              <th class="col-curso">4. Curso (clave — nombre)</th>
+              <th class="col-docente">8. Responsable</th>
+              <th class="col-resultado">
+                9. Resultado / 10. Meta
+                <div class="badge-col-hint">(ej. "Sí — 85%")</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- CD1 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD1
+Conoce las principales herramientas para la solución de problemas involucrados en los sistemas de manufactura.
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">
+1) Identifica los instrumentos LEAN para la solución de problemas en un sistema de manufactura.
+2) Aplica la metodología de una herramienta Lean para un problema práctico.
+                </textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">
+INF-1028 — Sistemas de Manufactura
+(Periodo: Agosto 2023 - Enero 2024)
+                </textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="Mtro. Miguel Ángel Sierra López">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">Sí
+Meta: 85%</textarea>
+              </td>
+            </tr>
+
+            <!-- CD1 continuación -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD1 (continuación)
+En la práctica de solución de problemas de manufactura se analiza un caso donde se pueden observar los puntos de calidad y se analiza para brindar una solución a la causa raíz.
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">
+(Indicadores prácticos: aplicar checklist, análisis causa raíz, propuesta de mejora)
+                </textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">
+INF-1028 — Sistemas de Manufactura
+(Periodo: Agosto 2023 - Enero 2024)
+                </textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="Mtro. Miguel Ángel Sierra López">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">Sí — 85%</textarea>
+              </td>
+            </tr>
+
+            <!-- CD2 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD2
+Aplica los principios y herramientas del diseño de red logística Lean para optimizar la configuración de la cadena de suministro y reducir los desperdicios.
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">
+1) Elabora una investigación sobre ejemplos de empresas que han aplicado Lean en su proceso logístico.
+2) Propone mejoras en la logística utilizando herramientas Lean.
+                </textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">
+DOF-2305 — Logística Industrial
+(Periodo: Enero 2024 - Junio 2024)
+                </textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="Ing. Juan Leonardo Albiter Pontífices">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">Sí — 85%</textarea>
+              </td>
+            </tr>
+
+            <!-- CD3 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD3
+Identificar, construir y utilizar redes para representar un problema a fin de optimizar su solución.
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">
+1) Menciona las diferencias y semejanzas de los diferentes modelos de redes.
+2) Resuelve modelos para los diferentes problemas de redes tomando en cuenta las diferencias entre ellos.
+                </textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">
+INC-1019 — Investigación de Operaciones II
+(Periodo: Agosto 2023 - Enero 2024)
+                </textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="Ing. Silvestre Soto Valdez">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">Sí — 85%</textarea>
+              </td>
+            </tr>
+
+            <!-- CD4 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD4
+Discutir los principios básicos y el impacto del sistema Justo a Tiempo (JIT) en la competitividad de las organizaciones actuales, así como las condiciones necesarias para su aplicación.
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">
+1) Compara el sistema tradicional con el sistema Justo a Tiempo y evalúa ventajas y desventajas de ambos enfoques.
+2) Analiza la relación existente entre todos los elementos del sistema justo a tiempo.
+                </textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">
+INC-1002 — Administración de las Operaciones II
+(Periodo: Enero 2024 - Junio 2024)
+                </textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="Ing. Silvestre Soto Valdez">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">Sí — 85%</textarea>
+              </td>
+            </tr>
+
+            <!-- CD5 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD5
+Utiliza Power Pivot para el modelado relacional y tratamiento de datos.
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">
+1) Identifica y utiliza la interfaz con las funciones principales de Power Pivot para el análisis de datos.
+2) Revisa casos de aplicación de modelado relacional y tratamiento de datos.
+                </textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">
+DOH-2304 — Introducción al Análisis de Datos
+(Periodo: Enero 2024 - Junio 2024)
+                </textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="Ing. Silvestre Soto Valdez">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">Sí — 85%</textarea>
+              </td>
+            </tr>
+
+            <!-- CD6 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD6
+—
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">—</textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">—</textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="—">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">—</textarea>
+              </td>
+            </tr>
+
+            <!-- CD7 -->
+            <tr>
+              <td class="col-criterio">
+                <textarea class="cell-textarea">
+CD7
+—
+                </textarea>
+              </td>
+              <td class="col-indicador">
+                <textarea class="cell-textarea">—</textarea>
+              </td>
+              <td class="col-curso">
+                <textarea class="cell-textarea">—</textarea>
+              </td>
+              <td class="col-docente">
+                <input class="cell-input" type="text" value="—">
+              </td>
+              <td class="col-resultado">
+                <textarea class="cell-textarea">—</textarea>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <p class="edit-note">
+          Esta vista es solo para edición. Al guardar, deberás enviar los valores de las celdas al servidor (en esta maqueta solo se muestra un mensaje).
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Abrir / cerrar sidebar
+    document.getElementById('menuButton').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.add('sidebar--open');
+      document.getElementById('backdrop').classList.add('backdrop--visible');
+    });
+    document.getElementById('closeMenu').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('sidebar--open');
+      document.getElementById('backdrop').classList.remove('backdrop--visible');
+    });
+    document.getElementById('backdrop').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('sidebar--open');
+      document.getElementById('backdrop').classList.remove('backdrop--visible');
+    });
+
+    // Botones guardar / cancelar (solo demo)
+    document.getElementById('btnGuardar').addEventListener('click', () => {
+      alert('Aquí enviarías los datos al servidor. (Maqueta: cambios no se guardan realmente)');
+    });
+
+    document.getElementById('btnCancelar').addEventListener('click', () => {
+      if(confirm('¿Deseas descartar los cambios?')){
+        location.reload();
+      }
+    });
+  </script>
+</body>
+</html>
